@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.berclazmayskiseller.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_products"
+        android:name="com.example.berclazmayskiseller.ui.products.ProductsFragment"
+        android:label="@string/title_products"
+        tools:layout="@layout/fragment_products" />
+
+    <fragment
+        android:id="@+id/navigation_myReservations"
+        android:name="com.example.berclazmayskiseller.ui.myreservations.MyReservationsFragment"
+        android:label="@string/title_myReservation"
+        tools:layout="@layout/fragment_myreservations" />
+
+    <fragment
+        android:id="@+id/navigation_findUs"
+        android:name="com.example.berclazmayskiseller.ui.findus.FindUsFragment"
+        android:label="@string/title_findUs"
+        tools:layout="@layout/fragment_findus" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.berclazmayskiseller.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
