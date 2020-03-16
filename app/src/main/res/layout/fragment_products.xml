@@ -7,22 +7,6 @@
     tools:context=".ui.home.HomeFragment"
     tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:id="@+id/text_products"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textColor="#0C0C0C"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        tools:visibility="invisible" />
-
     <Button
         android:id="@+id/button_displayProducts"
         android:layout_width="259dp"
