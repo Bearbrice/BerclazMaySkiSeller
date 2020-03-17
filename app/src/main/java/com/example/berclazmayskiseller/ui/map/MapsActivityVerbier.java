@@ -1,5 +1,6 @@
 package com.example.berclazmayskiseller.ui.map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivityVerbier extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivityVerbier extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
