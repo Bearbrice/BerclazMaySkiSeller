@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller;
+package com.example.berclazmayskiseller.ui.products;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.berclazmayskiseller.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DisplayProducts extends AppCompatActivity {
@@ -19,7 +20,6 @@ public class DisplayProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_products);
         //BottomNavigationView navView = findViewById(R.id.nav_view);
-
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

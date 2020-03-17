@@ -2,31 +2,18 @@ package com.example.berclazmayskiseller.ui.products;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 
-import com.example.berclazmayskiseller.DisplayProducts;
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.ui.home.HomeFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ProductsFragment extends Fragment {
-
-    Button myButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
