@@ -11,7 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.ui.map.MapsActivity;
+import com.example.berclazmayskiseller.ui.map.MapsActivityAnzere;
+import com.example.berclazmayskiseller.ui.map.MapsActivityVerbier;
 
 public class FindUsFragment extends Fragment {
 
@@ -19,11 +20,21 @@ public class FindUsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_findus, container, false);
 
-        Button button_displayProducts = (Button) view.findViewById(R.id.button_verbier);
-        button_displayProducts.setOnClickListener(new View.OnClickListener() {
+        Button button_verbier = (Button) view.findViewById(R.id.button_verbier);
+        button_verbier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), MapsActivity.class);
+                Intent in = new Intent(getActivity(), MapsActivityVerbier.class);
+                in.putExtra("some", "some data");
+                startActivity(in);
+            }
+        });
+
+        Button button_anzere = (Button) view.findViewById(R.id.button_anzere);
+        button_anzere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), MapsActivityAnzere.class);
                 in.putExtra("some", "some data");
                 startActivity(in);
             }

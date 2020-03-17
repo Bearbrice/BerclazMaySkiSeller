@@ -29,9 +29,27 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        //VERBIER MAP
         <activity
-            android:name=".ui.map.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:name=".ui.map.MapsActivityVerbier"
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        //ANZERE MAP
+        <activity
+            android:name=".ui.map.MapsActivityAnzere"
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <activity
             android:name=".MainActivity"

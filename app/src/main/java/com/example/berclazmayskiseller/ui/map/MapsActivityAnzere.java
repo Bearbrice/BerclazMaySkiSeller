@@ -12,7 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivityAnzere extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -41,8 +41,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng anzere = new LatLng(46.294862, 7.395471);
+        mMap.addMarker(new MarkerOptions().position(anzere).title("SkiSeller Anzere"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(anzere, 14));
+
     }
 }
