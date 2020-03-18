@@ -30,26 +30,8 @@
             android:value="@string/google_maps_key" />
 
         //VERBIER MAP
-        <activity
-            android:name=".ui.map.MapsActivityVerbier"
-            android:label="@string/title_activity_maps"
-            android:parentActivityName=".MainActivity">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
 
         //ANZERE MAP
-        <activity
-            android:name=".ui.map.MapsActivityAnzere"
-            android:label="@string/title_activity_maps"
-            android:parentActivityName=".MainActivity">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
 
         //DISPLAY PRODUCTS
         <activity

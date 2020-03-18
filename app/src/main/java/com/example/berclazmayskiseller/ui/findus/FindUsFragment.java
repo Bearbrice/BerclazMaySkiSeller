@@ -1,6 +1,5 @@
 package com.example.berclazmayskiseller.ui.findus;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +8,12 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.ui.map.MapsActivityAnzere;
-import com.example.berclazmayskiseller.ui.map.MapsActivityVerbier;
+import com.example.berclazmayskiseller.ui.findus.map.AnzereFragment;
+import com.example.berclazmayskiseller.ui.findus.map.VerbierFragment;
 
 public class FindUsFragment extends Fragment {
 
@@ -21,25 +22,33 @@ public class FindUsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_findus, container, false);
 
         Button button_verbier = (Button) view.findViewById(R.id.button_verbier);
+        Button button_anzere = (Button) view.findViewById(R.id.button_anzere);
+
         button_verbier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), MapsActivityVerbier.class);
-                in.putExtra("some", "some data");
-                startActivity(in);
+                addFragment(new VerbierFragment(), false, "one");
             }
         });
 
-        Button button_anzere = (Button) view.findViewById(R.id.button_anzere);
         button_anzere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), MapsActivityAnzere.class);
-                in.putExtra("some", "some data");
-                startActivity(in);
+                addFragment(new AnzereFragment(), false, "one");
             }
         });
 
         return view;
+    }
+
+    public void addFragment(Fragment fragment, boolean addToBackStack, String tag) {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+
+        if (addToBackStack) {
+            ft.addToBackStack(tag);
+        }
+        ft.replace(R.id.container_frame_back, fragment, tag);
+        ft.commitAllowingStateLoss();
     }
 }
