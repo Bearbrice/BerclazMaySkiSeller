@@ -7,7 +7,7 @@
     tools:context=".ui.settings.SettingsFragment">
 
     <Switch
-        android:id="@+id/notifications"
+        android:id="@+id/switch_notifications"
         android:layout_width="341dp"
         android:layout_height="47dp"
         android:layout_marginLeft="32dp"
@@ -18,23 +18,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Switch
-        android:id="@+id/notifications3"
-        android:layout_width="341dp"
-        android:layout_height="47dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/newsletter"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/position"
+        android:id="@+id/switch_position"
         android:layout_width="341dp"
         android:layout_height="47dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="48dp"
         android:text="@string/position"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch_newsletter"
+        android:layout_width="341dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/newsletter"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="newsletter_default_value">false</bool>
+    <bool name="newsletter_checked">false</bool>
+    <bool name="position_default_value">false</bool>
+    <bool name="position_checked">false</bool>
+    <bool name="notifications_default_value">false</bool>
+    <bool name="notifications_checked">false</bool>
+</resources>

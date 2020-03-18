@@ -29,11 +29,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        //VERBIER MAP
-
-        //ANZERE MAP
-
-        //DISPLAY PRODUCTS
+        <!--    DISPLAY PRODUCTS-->
         <activity
             android:name=".ui.products.DisplayProducts"
             android:parentActivityName=".MainActivity">
