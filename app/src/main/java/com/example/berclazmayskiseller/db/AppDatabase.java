@@ -1,45 +1,83 @@
 package com.example.berclazmayskiseller.db;
 
-
 import android.content.Context;
+import android.util.Log;
 
+import java.util.concurrent.Executors;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.berclazmayskiseller.db.dao.SkiDao;
-import com.example.berclazmayskiseller.db.entity.SkiEntity;
+import com.example.berclazmayskiseller.db.dao.BrandDao;
+import com.example.berclazmayskiseller.db.entity.BrandEntity;
 
-@Database(entities = {SkiEntity.class}, version = 1)
+@Database(entities = {BrandEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static AppDatabase INSTANCE;
+    private static final String TAG = "AppDatabase";
 
-    // For Singleton instantiation
-    private static final Object LOCK = new Object();
+    private static AppDatabase instance;
 
-    public abstract SkiDao skiDao();
+    private static final String DATABASE_NAME = "intro-database";
 
-    public synchronized static AppDatabase getAppDatabase(Context context) {
-        if (INSTANCE == null) {
-            synchronized (LOCK) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "ski-database")
-                            /*
-                            allow queries on the main thread.
-                            Don't do this in a real app!
-                            See PersistenceBasicSample
-                            https://github.com/googlesamples/android-architecture-components/tree/master/BasicSample
-                            for an example.
+    public abstract BrandDao brandDao();
 
-                            Would throw java.lang.IllegalStateException:
-                            Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
-                            */
-                            .allowMainThreadQueries()
-                            .build();
+    private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
+
+    public static AppDatabase getInstance(final Context context) {
+        if (instance == null) {
+            synchronized (AppDatabase.class) {
+                if (instance == null) {
+                    instance = buildDatabase(context.getApplicationContext());
+                    instance.updateDatabaseCreated(context.getApplicationContext());
                 }
             }
         }
-        return INSTANCE;
+        return instance;
+    }
+
+    /**
+     * Build the database. {@link Builder#build()} only sets up the database configuration and
+     * creates a new instance of the database.
+     * The SQLite database is only created when it's accessed for the first time.
+     */
+    private static AppDatabase buildDatabase(final Context appContext) {
+        Log.i(TAG, "Database will be initialized.");
+        return Room.databaseBuilder(appContext, AppDatabase.class, DATABASE_NAME)
+                .addCallback(new Callback() {
+                    @Override
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                        super.onCreate(db);
+                        Executors.newSingleThreadExecutor().execute(() -> {
+                            AppDatabase database = AppDatabase.getInstance(appContext);
+                            DatabaseInitializer.populateDatabase(database);
+                            // notify that the database was created and it's ready to be used
+                            database.setDatabaseCreated();
+                        });
+                    }
+                }).build();
+    }
+
+    /**
+     * Check whether the database already exists and expose it via {@link #getDatabaseCreated()}
+     */
+    private void updateDatabaseCreated(final Context context) {
+        if (context.getDatabasePath(DATABASE_NAME).exists()) {
+            Log.i(TAG, "Database initialized.");
+            setDatabaseCreated();
+        }
+    }
+
+    private void setDatabaseCreated() {
+        isDatabaseCreated.postValue(true);
+    }
+
+    public LiveData<Boolean> getDatabaseCreated() {
+        return isDatabaseCreated;
     }
 }

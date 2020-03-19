@@ -9,17 +9,15 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.SkiEntity;
+import com.example.berclazmayskiseller.db.entity.BrandEntity;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
 
 import java.util.List;
 import java.util.Objects;
 
-
-
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<SkiEntity> data;
+    private List<BrandEntity> data;
     private RecyclerViewItemClickListener listener;
 
     // Provide a reference to the views for each data item
@@ -28,6 +26,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView textView;
+
         ViewHolder(TextView textView) {
             super(textView);
             this.textView = textView;
@@ -61,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        SkiEntity item = data.get(position);
+        BrandEntity item = data.get(position);
         holder.textView.setText(item.toString());
     }
 
@@ -74,7 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
-    public void setData(final List<SkiEntity> data) {
+    public void setData(final List<BrandEntity> data) {
         if (this.data == null) {
             this.data = data;
             notifyItemRangeInserted(0, data.size());
@@ -93,21 +92,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 
-                    if (RecyclerAdapter.this.data instanceof SkiEntity) {
-//                        return (RecyclerAdapter.this.data.get(oldItemPosition)).getEmail().equals(
-//                                (data.get(newItemPosition)).getEmail());
+                    if (RecyclerAdapter.this.data instanceof BrandEntity) {
+                        return (RecyclerAdapter.this.data.get(oldItemPosition)).getBrandName().equals(
+                                (data.get(newItemPosition)).getBrandName());
                     }
                     return false;
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (RecyclerAdapter.this.data instanceof SkiEntity) {
-                        SkiEntity newClient = data.get(newItemPosition);
-                        SkiEntity oldClient = RecyclerAdapter.this.data.get(newItemPosition);
-//                        return Objects.equals(newClient.getEmail(), oldClient.getEmail())
-//                                && Objects.equals(newClient.getFirstName(), oldClient.getFirstName())
-//                                && Objects.equals(newClient.getLastName(), oldClient.getLastName());
+                    if (RecyclerAdapter.this.data instanceof BrandEntity) {
+                        BrandEntity newClient = data.get(newItemPosition);
+                        BrandEntity oldClient = RecyclerAdapter.this.data.get(newItemPosition);
+
+                        // Require minSdkVersion 19 (switched from 16 to 19 on the 19th of march)
+                        return Objects.equals(newClient.getBrandName(), oldClient.getBrandName());
+
                     }
                     return false;
                 }
