@@ -41,7 +41,7 @@ public class SettingsFragment extends Fragment {
         //Get shared preferences for switches
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 
-        //Switch creator
+        //NOTIFICATIONS SWITCH----------------------------------------------
         Switch notifications = view.findViewById(R.id.switch_notifications);
         //Set switch state
         boolean notifications_defaultValue = getResources().getBoolean(R.bool.notifications_default_value);
@@ -58,7 +58,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        //Switch creator
+        //POSITION SWITCH-----------------------------------------
         Switch position = view.findViewById(R.id.switch_position);
         //Set switch state
         boolean position_defaultValue = getResources().getBoolean(R.bool.position_default_value);
@@ -75,7 +75,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        //Switch creator
+        //NEWSLETTER SWITCH------------------------------------------------
         final Switch newsletter = view.findViewById(R.id.switch_newsletter);
         //Set switch state
         boolean newsletter_defaultValue = getResources().getBoolean(R.bool.newsletter_default_value);
@@ -107,12 +107,14 @@ public class SettingsFragment extends Fragment {
                             String emailAddressEntered = "";
                             emailAddressEntered = input.getText().toString();
 
+                            //Setting the confirmation message
                             String confirmationMessage = "Confirmation sended to " + emailAddressEntered;
                             SpannableStringBuilder biggerConfirmationMessage = new SpannableStringBuilder(confirmationMessage);
                             biggerConfirmationMessage.setSpan(new RelativeSizeSpan(1.35f), 0, confirmationMessage.length(), 0);
                             Toast confirmationToast = Toast.makeText(getContext(), biggerConfirmationMessage, Toast.LENGTH_LONG);
                             confirmationToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
 
+                            //Setting the error message
                             String errorMessage = emailAddressEntered + " is not a valid mail.";
                             SpannableStringBuilder biggerErrorMessage = new SpannableStringBuilder(errorMessage);
                             biggerErrorMessage.setSpan(new RelativeSizeSpan(1.35f), 0, errorMessage.length(), 0);
@@ -148,4 +150,5 @@ public class SettingsFragment extends Fragment {
 
         return view;
     }
+
 }
