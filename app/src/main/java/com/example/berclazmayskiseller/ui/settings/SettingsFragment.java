@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.SpannableStringBuilder;
@@ -17,10 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.DialogFragment;
@@ -29,6 +32,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.berclazmayskiseller.MainActivity;
 import com.example.berclazmayskiseller.R;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
 
@@ -55,6 +59,9 @@ public class SettingsFragment extends Fragment {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putBoolean(String.valueOf(R.bool.notifications_checked), isChecked);
                 editor.commit();
+
+                Snackbar.make(getView(), "Notifications activated.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
@@ -72,6 +79,9 @@ public class SettingsFragment extends Fragment {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putBoolean(String.valueOf(R.bool.position_checked), isChecked);
                 editor.commit();
+
+                Snackbar.make(getView(), "Position activated.", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
@@ -145,6 +155,29 @@ public class SettingsFragment extends Fragment {
                 }
 
 
+            }
+        });
+
+        //DARK MODE SWITCH----------------------------------------
+        Switch darkMode = view.findViewById(R.id.switch_darkMode);
+        //Set switch state
+        boolean darkMode_defaultValue = getResources().getBoolean(R.bool.darkMode_default_value);
+        boolean darkMode_switchSaverIsChecked = sharedPref.getBoolean(String.valueOf(R.bool.darkMode_checked), darkMode_defaultValue);
+        darkMode.setChecked(darkMode_switchSaverIsChecked);
+        //Set switch listener
+        darkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //Save switch state
+                SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean(String.valueOf(R.bool.darkMode_checked), isChecked);
+                editor.commit();
+
+                if (isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
             }
         });
 

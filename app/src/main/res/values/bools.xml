@@ -6,4 +6,6 @@
     <bool name="position_checked">false</bool>
     <bool name="notifications_default_value">false</bool>
     <bool name="notifications_checked">false</bool>
+    <bool name="darkMode_default_value">false</bool>
+    <bool name="darkMode_checked">false</bool>
 </resources>
