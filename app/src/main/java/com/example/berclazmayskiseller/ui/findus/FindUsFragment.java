@@ -40,7 +40,6 @@ public class FindUsFragment extends Fragment {
         button_verbier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.container_frame_back);  //use SuppoprtMapFragment for using in fragment instead of activity  MapFragment = activity   SupportMapFragment = fragment
                 mapFragment.getMapAsync(new OnMapReadyCallback() {
                     @Override

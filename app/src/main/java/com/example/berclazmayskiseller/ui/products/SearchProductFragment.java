@@ -1,6 +1,5 @@
 package com.example.berclazmayskiseller.ui.products;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +11,31 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.example.berclazmayskiseller.R;
-import com.google.android.gms.maps.SupportMapFragment;
 
-public class ProductsFragment extends Fragment {
+public class SearchProductFragment extends Fragment {
+
+    public SearchProductFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_products, container, false);
-        addFragment(new SearchProductFragment(), false, "one");
+        View view = inflater.inflate(R.layout.fragment_product_search, container, false);
+
+        Button button_displayProducts = (Button) view.findViewById(R.id.button_displayProducts);
+        button_displayProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFragment(new DisplayProductsFragment(), false, "one");
+            }
+        });
 
         return view;
     }

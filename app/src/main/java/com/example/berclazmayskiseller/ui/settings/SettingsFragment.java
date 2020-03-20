@@ -60,8 +60,10 @@ public class SettingsFragment extends Fragment {
                 editor.putBoolean(String.valueOf(R.bool.notifications_checked), isChecked);
                 editor.commit();
 
-                Snackbar.make(getView(), "Notifications activated.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (isChecked) {
+                    Snackbar.make(getView(), "Notifications activated.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
 
@@ -80,8 +82,11 @@ public class SettingsFragment extends Fragment {
                 editor.putBoolean(String.valueOf(R.bool.position_checked), isChecked);
                 editor.commit();
 
-                Snackbar.make(getView(), "Position activated.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (isChecked) {
+                    Snackbar.make(getView(), "Position activated.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
             }
         });
 
@@ -153,8 +158,6 @@ public class SettingsFragment extends Fragment {
 
                     builder.show();
                 }
-
-
             }
         });
 
