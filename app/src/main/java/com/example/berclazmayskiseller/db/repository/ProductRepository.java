@@ -14,18 +14,18 @@ import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 
 import java.util.List;
 
-public class BrandRepository {
+public class ProductRepository {
 
-    private static BrandRepository instance;
+    private static ProductRepository instance;
 
-    private BrandRepository() {
+    private ProductRepository() {
     }
 
-    public static BrandRepository getInstance() {
+    public static ProductRepository getInstance() {
         if (instance == null) {
-            synchronized (BrandRepository.class) {
+            synchronized (ProductRepository.class) {
                 if (instance == null) {
-                    instance = new BrandRepository();
+                    instance = new ProductRepository();
                 }
             }
         }

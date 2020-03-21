@@ -6,8 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "brands", indices = {@Index(value = {"brand"}, unique = true)})
-public class BrandEntity {
+@Entity(tableName = "brands")
+public class BrandEntity implements Comparable {
 
     /* Primary Key */
     @PrimaryKey(autoGenerate = true)
@@ -23,11 +23,11 @@ public class BrandEntity {
     }
 
     /* Methods */
-    public int getId() {
+    public int getIdBrand() {
         return idBrand;
     }
 
-    public void setId(int idBrand) {
+    public void setIdBrand(int idBrand) {
         this.idBrand = idBrand;
     }
 
@@ -51,5 +51,10 @@ public class BrandEntity {
     @Override
     public String toString() {
         return brandName;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return toString().compareTo(o.toString());
     }
 }

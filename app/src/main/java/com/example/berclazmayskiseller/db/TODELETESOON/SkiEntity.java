@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller.db.entity;
+package com.example.berclazmayskiseller.db.TODELETESOON;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

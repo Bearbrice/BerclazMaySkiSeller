@@ -102,11 +102,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     if (RecyclerAdapter.this.data instanceof BrandEntity) {
-                        BrandEntity newClient = data.get(newItemPosition);
-                        BrandEntity oldClient = RecyclerAdapter.this.data.get(newItemPosition);
+                        BrandEntity newBrand = data.get(newItemPosition);
+                        BrandEntity oldBrand = RecyclerAdapter.this.data.get(newItemPosition);
 
                         // Require minSdkVersion 19 (switched from 16 to 19 on the 19th of march)
-                        return Objects.equals(newClient.getBrandName(), oldClient.getBrandName());
+                        return Objects.equals(newBrand.getBrandName(), oldBrand.getBrandName());
 
                     }
                     return false;

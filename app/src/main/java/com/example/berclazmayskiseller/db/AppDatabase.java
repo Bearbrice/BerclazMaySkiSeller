@@ -14,6 +14,9 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.berclazmayskiseller.db.dao.BrandDao;
+import com.example.berclazmayskiseller.db.dao.ClientDao;
+import com.example.berclazmayskiseller.db.dao.OrderDao;
+import com.example.berclazmayskiseller.db.dao.ProductDao;
 import com.example.berclazmayskiseller.db.entity.BrandEntity;
 
 @Database(entities = {BrandEntity.class}, version = 1)
@@ -26,6 +29,9 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "intro-database";
 
     public abstract BrandDao brandDao();
+    public abstract ClientDao clientDao();
+    public abstract OrderDao orderDao();
+    public abstract ProductDao productDao();
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
 

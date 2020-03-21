@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller.db.dao;
+package com.example.berclazmayskiseller.db.TODELETESOON;
 
 import android.database.sqlite.SQLiteConstraintException;
 
@@ -7,8 +7,6 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-
-import com.example.berclazmayskiseller.db.entity.SkiEntity;
 
 import java.util.List;
 
