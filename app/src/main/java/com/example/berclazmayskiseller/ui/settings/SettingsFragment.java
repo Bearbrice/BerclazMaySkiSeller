@@ -194,6 +194,5 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
-        System.out.println("DISCONNECTED");
     }
 }
