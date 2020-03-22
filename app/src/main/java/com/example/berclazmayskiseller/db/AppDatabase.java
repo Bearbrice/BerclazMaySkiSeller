@@ -74,6 +74,18 @@ public abstract class AppDatabase extends RoomDatabase {
                 }).build();
     }
 
+    public static void initializeDemoData(final AppDatabase database) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            database.runInTransaction(() -> {
+                Log.i(TAG, "Wipe database.");
+                database.clientDao().deleteAll();
+                //database.accountDao().deleteAll();
+
+                DatabaseInitializer.populateDatabase(database);
+            });
+        });
+    }
+
     /**
      * Check whether the database already exists and expose it via {@link #getDatabaseCreated()}
      */
