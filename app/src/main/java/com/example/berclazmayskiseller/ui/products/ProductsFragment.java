@@ -22,7 +22,8 @@ public class ProductsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_products, container, false);
-        addFragment(new SearchProductFragment(), false, "one");
+//        addFragment(new SearchProductFragment(), false, "one");
+        addFragment(new DisplayProductsFragment(), false, "one");
 
         return view;
     }

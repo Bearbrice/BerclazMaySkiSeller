@@ -33,7 +33,7 @@ public class SearchProductFragment extends Fragment {
         button_displayProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addFragment(new DisplayProductsFragment(), false, "one");
+                addFragment(new LASTDisplayProductsFragment(), false, "one");
             }
         });
 
