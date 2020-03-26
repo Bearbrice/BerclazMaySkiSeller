@@ -1,87 +1,84 @@
 package com.example.berclazmayskiseller.adapter;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.BrandEntity;
+import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
 
 import java.util.List;
 import java.util.Objects;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<BrandEntity> data;
-    private RecyclerViewItemClickListener listener;
+    private List<T> mData;
+    private RecyclerViewItemClickListener mListener;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        TextView textView;
+        TextView mTextView;
 
         ViewHolder(TextView textView) {
             super(textView);
-            this.textView = textView;
+            mTextView = textView;
         }
     }
 
     public RecyclerAdapter(RecyclerViewItemClickListener listener) {
-        this.listener = listener;
+        mListener = listener;
     }
 
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // create a new view
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_view, parent, false);
         final ViewHolder viewHolder = new ViewHolder(v);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onItemClick(view, viewHolder.getAdapterPosition());
-            }
-        });
-        v.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                listener.onItemLongClick(view, viewHolder.getAdapterPosition());
-                return true;
-            }
+        v.setOnClickListener(view -> mListener.onItemClick(view, viewHolder.getAdapterPosition()));
+        v.setOnLongClickListener(view -> {
+            mListener.onItemLongClick(view, viewHolder.getAdapterPosition());
+            return true;
         });
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        BrandEntity item = data.get(position);
-        holder.textView.setText(item.toString());
+        T item = mData.get(position);
+//        if (item.getClass().equals(AccountEntity.class))
+//            holder.mTextView.setText(((AccountEntity) item).getName());
+//        if (item.getClass().equals(ClientEntity.class))
+//            holder.mTextView.setText(((ClientEntity) item).getFirstName() + " " + ((ClientEntity) item).getLastName());
+        if (item.getClass().equals(ProductEntity.class))
+            holder.mTextView.setText(((ProductEntity) item).getProductName());
     }
 
     @Override
     public int getItemCount() {
-        if (data != null) {
-            return data.size();
+        if (mData != null) {
+            return mData.size();
         } else {
             return 0;
         }
     }
 
-    public void setData(final List<BrandEntity> data) {
-        if (this.data == null) {
-            this.data = data;
+    public void setData(final List<T> data) {
+        if (mData == null) {
+            mData = data;
             notifyItemRangeInserted(0, data.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
-                    return RecyclerAdapter.this.data.size();
+                    return mData.size();
                 }
 
                 @Override
@@ -91,28 +88,48 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-
-                    if (RecyclerAdapter.this.data instanceof BrandEntity) {
-                        return (RecyclerAdapter.this.data.get(oldItemPosition)).getBrandName().equals(
-                                (data.get(newItemPosition)).getBrandName());
+//                    if (mData instanceof AccountEntity) {
+//                        return ((AccountEntity) mData.get(oldItemPosition)).getId().equals(((AccountEntity) data.get(newItemPosition)).getId());
+//                    }
+//                    if (mData instanceof ClientEntity) {
+//                        return ((ClientEntity) mData.get(oldItemPosition)).getEmail().equals(
+//                                ((ClientEntity) data.get(newItemPosition)).getEmail());
+//                    }
+                    if (mData instanceof ProductEntity) {
+                       return ((ProductEntity) mData.get(oldItemPosition)).getProductName().equals(((ProductEntity) data.get(newItemPosition)).getProductName());
                     }
                     return false;
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    if (RecyclerAdapter.this.data instanceof BrandEntity) {
-                        BrandEntity newBrand = data.get(newItemPosition);
-                        BrandEntity oldBrand = RecyclerAdapter.this.data.get(newItemPosition);
-
-                        // Require minSdkVersion 19 (switched from 16 to 19 on the 19th of march)
-                        return Objects.equals(newBrand.getBrandName(), oldBrand.getBrandName());
-
+//                    if (mData instanceof AccountEntity) {
+//                        AccountEntity newAccount = (AccountEntity) data.get(newItemPosition);
+//                        AccountEntity oldAccount = (AccountEntity) mData.get(newItemPosition);
+//                        return newAccount.getId().equals(oldAccount.getId())
+//                                && Objects.equals(newAccount.getName(), oldAccount.getName())
+//                                && Objects.equals(newAccount.getBalance(), oldAccount.getBalance())
+//                                && newAccount.getOwner().equals(oldAccount.getOwner());
+//                    }
+//                    if (mData instanceof ClientEntity) {
+//                        ClientEntity newClient = (ClientEntity) data.get(newItemPosition);
+//                        ClientEntity oldClient = (ClientEntity) mData.get(newItemPosition);
+//                        return Objects.equals(newClient.getEmail(), oldClient.getEmail())
+//                                && Objects.equals(newClient.getFirstName(), oldClient.getFirstName())
+//                                && Objects.equals(newClient.getLastName(), oldClient.getLastName())
+//                                && newClient.getPassword().equals(oldClient.getPassword());
+//                    }
+                    if (mData instanceof ProductEntity) {
+                        ProductEntity newProduct = (ProductEntity) data.get(newItemPosition);
+                        ProductEntity oldProduct = (ProductEntity) mData.get(newItemPosition);
+                        return Objects.equals(newProduct.getProductName(), oldProduct.getProductName())
+                                && Objects.equals(newProduct.getPrice(), oldProduct.getPrice())
+                                && Objects.equals(newProduct.getColor(), oldProduct.getColor());
                     }
                     return false;
                 }
             });
-            this.data = data;
+            mData = data;
             result.dispatchUpdatesTo(this);
         }
     }

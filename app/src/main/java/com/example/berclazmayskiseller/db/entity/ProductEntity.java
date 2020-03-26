@@ -3,32 +3,18 @@ package com.example.berclazmayskiseller.db.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Index;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "products",
-        foreignKeys =
-        @ForeignKey(
-                entity = BrandEntity.class,
-                parentColumns = "idBrand",
-                childColumns = "brand_id",
-                onDelete = ForeignKey.CASCADE
-        ),
-        indices = {
-                @Index(
-                        value = {"brand_id"}
-                )}
-)
-//@Entity(tableName = "products")
+@Entity(tableName = "products")
 public class ProductEntity {
 
-    /* Primary Key */
+    /* Primary key */
     @PrimaryKey(autoGenerate = true)
     private int idProduct;
 
     /* Columns */
-    @ColumnInfo(name = "productName")
+    @ColumnInfo(name = "product_name")
     private String productName;
 
     @ColumnInfo(name = "price")
@@ -37,12 +23,19 @@ public class ProductEntity {
     @ColumnInfo(name = "color")
     private String color;
 
-    /* Constructor */
-    public ProductEntity(@NonNull String productName) {
+    /* Constructors */
+    @Ignore
+    public ProductEntity() {
+    }
+
+    public ProductEntity(@NonNull String productName, double price, String color) {
         this.productName = productName;
+        this.price = price;
+        this.color = color;
     }
 
     /* Methods */
+    /* Getters + Setters */
     public int getIdProduct() {
         return idProduct;
     }
@@ -55,7 +48,7 @@ public class ProductEntity {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public void setProductName(@NonNull String productName) {
         this.productName = productName;
     }
 
@@ -75,6 +68,7 @@ public class ProductEntity {
         this.color = color;
     }
 
+    /* Other methods */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
@@ -86,6 +80,6 @@ public class ProductEntity {
 
     @Override
     public String toString() {
-        return productName;
+        return productName + ", " + price + ", " + color;
     }
 }

@@ -1,27 +1,28 @@
-package com.example.berclazmayskiseller.db.async.brand_unused;
+package com.example.berclazmayskiseller.db.async.product;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
 import com.example.berclazmayskiseller.db.AppDatabase;
-import com.example.berclazmayskiseller.db.entity.BrandEntity;
+import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 
-public class DeleteBrand extends AsyncTask<BrandEntity, Void, Void> {
+public class DeleteProduct extends AsyncTask<ProductEntity, Void, Void> {
+
     private AppDatabase database;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public DeleteBrand(Context context, OnAsyncEventListener callback) {
+    public DeleteProduct(Context context, OnAsyncEventListener callback) {
         database = AppDatabase.getInstance(context);
         this.callback = callback;
     }
 
     @Override
-    protected Void doInBackground(BrandEntity... params) {
+    protected Void doInBackground(ProductEntity... params) {
         try {
-            for (BrandEntity brand : params)
-                database.brandDao().delete(brand);
+            for (ProductEntity product : params)
+                database.productDao().delete(product);
         } catch (Exception e) {
             exception = e;
         }

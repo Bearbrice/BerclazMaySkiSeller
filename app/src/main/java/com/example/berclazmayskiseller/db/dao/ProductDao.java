@@ -2,6 +2,8 @@ package com.example.berclazmayskiseller.db.dao;
 
 import android.database.sqlite.SQLiteConstraintException;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -11,13 +13,11 @@ import androidx.room.Update;
 
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 
-import java.util.List;
-
 @Dao
 public interface ProductDao {
 
-    @Query("SELECT * FROM products WHERE productName = :productName")
-    LiveData<ProductEntity> getByEmail(String productName);
+    @Query("SELECT * FROM products WHERE idProduct = :id")
+    LiveData<ProductEntity> getById(int id);
 
     @Query("SELECT * FROM products")
     LiveData<List<ProductEntity>> getAll();
@@ -33,4 +33,5 @@ public interface ProductDao {
 
     @Query("DELETE FROM products")
     void deleteAll();
+
 }

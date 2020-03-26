@@ -26,4 +26,16 @@ public class BaseApp extends Application {
     public ClientRepository getClientRepository() {
         return ClientRepository.getInstance();
     }
+
+//    public OrderRepository getOrderRepository() {
+//        return OrderRepository.getInstance();
+//    }
+//
+//    public BrandRepository getBrandRepository() {
+//        return BrandRepository.getInstance();
+//    }
+//
+//    public ProductRepository getProductRepository() {
+//        return ProductRepository.getInstance();
+//    }
 }

@@ -1,15 +1,14 @@
 package com.example.berclazmayskiseller.db.repository;
 
-
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.berclazmayskiseller.db.AppDatabase;
-import com.example.berclazmayskiseller.db.async.brand_unused.CreateBrand;
-import com.example.berclazmayskiseller.db.async.brand_unused.DeleteBrand;
-import com.example.berclazmayskiseller.db.async.brand_unused.UpdateBrand;
-import com.example.berclazmayskiseller.db.entity.BrandEntity;
+import com.example.berclazmayskiseller.db.async.product.CreateProduct;
+import com.example.berclazmayskiseller.db.async.product.DeleteProduct;
+import com.example.berclazmayskiseller.db.async.product.UpdateProduct;
+import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 
 import java.util.List;
@@ -18,8 +17,7 @@ public class ProductRepository {
 
     private static ProductRepository instance;
 
-    private ProductRepository() {
-    }
+    private ProductRepository() {}
 
     public static ProductRepository getInstance() {
         if (instance == null) {
@@ -32,25 +30,23 @@ public class ProductRepository {
         return instance;
     }
 
-    public LiveData<BrandEntity> getBrand(final String email, Context context) {
-        return AppDatabase.getInstance(context).brandDao().getByEmail(email);
+    public LiveData<ProductEntity> getProduct(final int id, Context context) {
+        return AppDatabase.getInstance(context).productDao().getById(id);
     }
 
-    public LiveData<List<BrandEntity>> getAllBrands(Context context) {
-        //return AppDatabase.getInstance(context).brandDao().getAll();
-        return AppDatabase.getInstance(context).brandDao().getAll();
+    public LiveData<List<ProductEntity>> getAllProducts(Context context) {
+        return AppDatabase.getInstance(context).productDao().getAll();
     }
 
-    public void insert(final BrandEntity brand, OnAsyncEventListener callback, Context context) {
-        new CreateBrand(context, callback).execute(brand);
+    public void insert(final ProductEntity product, OnAsyncEventListener callback, Context context) {
+        new CreateProduct(context, callback).execute(product);
     }
 
-    public void update(final BrandEntity brand, OnAsyncEventListener callback, Context context) {
-        new UpdateBrand(context, callback).execute(brand);
+    public void update(final ProductEntity product, OnAsyncEventListener callback, Context context) {
+        new UpdateProduct(context, callback).execute(product);
     }
 
-    public void delete(final BrandEntity brand, OnAsyncEventListener callback, Context context) {
-        new DeleteBrand(context, callback).execute(brand);
+    public void delete(final ProductEntity product, OnAsyncEventListener callback, Context context) {
+        new DeleteProduct(context, callback).execute(product);
     }
 }
-
