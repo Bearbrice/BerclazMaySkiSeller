@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_productsDetails"
+        android:id="@+id/container_products"
         android:layout_width="439dp"
         android:layout_height="663dp"
         android:orientation="horizontal"
@@ -16,12 +16,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--    inutile-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/container_productsSearch"
-        android:layout_width="439dp"
-        android:layout_height="663dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:id="@+id/container_productsSearch"-->
+    <!--        android:layout_width="439dp"-->
+    <!--        android:layout_height="663dp"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

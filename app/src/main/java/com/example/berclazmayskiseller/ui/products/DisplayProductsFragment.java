@@ -61,7 +61,7 @@ public class DisplayProductsFragment extends Fragment {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + products.get(position).toString());
 
-                addFragment(new DetailsProductFragment(), getActivity(), R.id.container_productsDetails, false, "one");
+                addFragment(new DetailsProductFragment(), getActivity(), R.id.container_products, false, "one");
 
 
 //                Intent intent = new Intent(MainActivity.this, ClientDetails.class);

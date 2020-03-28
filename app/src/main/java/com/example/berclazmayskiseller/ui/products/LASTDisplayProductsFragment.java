@@ -35,7 +35,7 @@ public class LASTDisplayProductsFragment extends Fragment {
         imageButton_backToSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addFragment(new SearchProductFragment(), getActivity(), R.id.container_productsSearch, false, "one");
+                addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
         });
 
