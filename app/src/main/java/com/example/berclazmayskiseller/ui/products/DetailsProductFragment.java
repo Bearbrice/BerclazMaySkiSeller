@@ -98,7 +98,7 @@ public class DetailsProductFragment extends Fragment {
 
     String productName = getActivity().getIntent().getStringExtra("productName");
 
-    initiateView();
+        initiateView(view);
 
     ProductViewModel.Factory factory = new ProductViewModel.Factory(getActivity().getApplication(), productName);
         viewModel = ViewModelProviders.of(this, factory).get(ProductViewModel.class);
@@ -138,11 +138,11 @@ public class DetailsProductFragment extends Fragment {
     * METHODS OF THE CLASS
     * *************************** */
 
-    private void initiateView() {
+    private void initiateView(View view) {
         isEditable = false;
-        etProductName = getActivity().findViewById(R.id.productName);
-        etColor = getActivity().findViewById(R.id.color);
-        etPrice = getActivity().findViewById(R.id.price);
+        etProductName = view.findViewById(R.id.productName);
+        etColor = view.findViewById(R.id.color);
+        etPrice = view.findViewById(R.id.price);
 
         etProductName.setFocusable(false);
         etProductName.setEnabled(false);
