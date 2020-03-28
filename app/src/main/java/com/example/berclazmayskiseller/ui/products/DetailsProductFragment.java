@@ -31,6 +31,7 @@ import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.berclazmayskiseller.ui.AddFragment.addFragment;
 
@@ -54,10 +55,34 @@ public class DetailsProductFragment extends Fragment {
 
     private ProductEntity product;
 
+    /* *****************************
+     * METHODS OF THE CLASS
+     * *************************** */
+    private List<ProductEntity> products = new ArrayList<>();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public DetailsProductFragment(ProductEntity productEntity) {
+        product = productEntity;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
@@ -107,6 +132,7 @@ public class DetailsProductFragment extends Fragment {
                 product = productEntity;
                 updateContent();
             }
+                updateContent();
         });
 
             if (productName != null) {
@@ -118,25 +144,6 @@ public class DetailsProductFragment extends Fragment {
 
         return view;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    /* *****************************
-    * METHODS OF THE CLASS
-    * *************************** */
 
     private void initiateView(View view) {
         isEditable = false;
@@ -245,7 +252,7 @@ public class DetailsProductFragment extends Fragment {
         if (product != null) {
             etProductName.setText(product.getProductName());
             etColor.setText(product.getColor());
-            etPrice.setText((int) product.getPrice());
+//            etPrice.setText((int) product.getPrice());
         }
     }
 
