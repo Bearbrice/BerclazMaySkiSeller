@@ -42,6 +42,17 @@
     <string name="client_firstName">First Name</string>
     <string name="client_repeat_password">Repeat Password</string>
 
+    <!-- Strings related to products -->
+    <string name="product_name">Product name</string>
+    <string name="product_color">Color</string>
+    <string name="product_price">Price</string>
+    <string name="title_fragment_details">Product Details</string>
+    <string name="title_fragment_create">Create Product</string>
+    <string name="error_used_product_name">Product name already in use</string>
+    <string name="error_invalid_product_name">Invalid product name address</string>
+    <string name="action_error">Something went wrong</string>
+    <string name="product_edited">Product edited</string>
+
 
     <string-array name="skiBrands">
         <item>All brands</item>

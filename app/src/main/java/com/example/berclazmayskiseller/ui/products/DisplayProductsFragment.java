@@ -25,6 +25,8 @@ import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.berclazmayskiseller.ui.AddFragment.addFragment;
+
 public class DisplayProductsFragment extends Fragment {
 
     private static final String TAG = "DisplayProductsFragment";
@@ -58,6 +60,9 @@ public class DisplayProductsFragment extends Fragment {
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + products.get(position).toString());
+
+                addFragment(new DetailsProductFragment(), getActivity(), R.id.container_productsDetails, false, "one");
+
 
 //                Intent intent = new Intent(MainActivity.this, ClientDetails.class);
 //                intent.setFlags(

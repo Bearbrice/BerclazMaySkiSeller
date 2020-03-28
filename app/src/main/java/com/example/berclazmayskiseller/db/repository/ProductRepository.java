@@ -30,8 +30,8 @@ public class ProductRepository {
         return instance;
     }
 
-    public LiveData<ProductEntity> getProduct(final int id, Context context) {
-        return AppDatabase.getInstance(context).productDao().getById(id);
+    public LiveData<ProductEntity> getProduct(final String name, Context context) {
+        return AppDatabase.getInstance(context).productDao().getByName(name);
     }
 
     public LiveData<List<ProductEntity>> getAllProducts(Context context) {
