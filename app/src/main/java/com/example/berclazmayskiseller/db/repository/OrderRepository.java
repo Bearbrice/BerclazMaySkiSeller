@@ -38,11 +38,15 @@ public class OrderRepository {
         return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
     }
 
+    public LiveData<OrderEntity> getByOwner(final String email, Context application) {
+        return ((BaseApp) application).getDatabase().orderDao().getByEmail(email);
+    }
+
     public LiveData<List<OrderEntity>> getAllOrders(Context context) {
         return AppDatabase.getInstance(context).orderDao().getAll();
     }
 
-    public LiveData<List<OrderEntity>> getByOwner(final String owner, Application application) {
+    public LiveData<List<OrderEntity>> getByOwners(final String owner, Context application) {
         return ((BaseApp) application).getDatabase().orderDao().getOwned(owner);
     }
 

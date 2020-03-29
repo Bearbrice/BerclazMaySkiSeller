@@ -23,6 +23,9 @@ public interface OrderDao {
     @Query("SELECT * FROM orders WHERE idOrder = :id")
     LiveData<OrderEntity> getById(int id);
 
+    @Query("SELECT * FROM orders WHERE client_email = :email")
+    LiveData<OrderEntity> getByEmail(String email);
+
     @Query("SELECT * FROM orders")
     LiveData<List<OrderEntity>> getAll();
 

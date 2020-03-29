@@ -24,7 +24,7 @@ public class OrderViewModel extends AndroidViewModel {
     private final MediatorLiveData<OrderEntity> observableOrder;
 
     public OrderViewModel(@NonNull Application application,
-                            final int idOrder, OrderRepository orderRepository) {
+                            final String email, OrderRepository orderRepository) {
         super(application);
 
         repository = orderRepository;
@@ -35,7 +35,7 @@ public class OrderViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableOrder.setValue(null);
 
-        LiveData<OrderEntity> order = repository.getOrder(idOrder, applicationContext);
+        LiveData<OrderEntity> order = repository.getByOwner(email, applicationContext);
 
         // observe the changes of the order entity from the database and forward them
         observableOrder.addSource(order, observableOrder::setValue);
@@ -49,13 +49,13 @@ public class OrderViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final int email;
+        private final String email;
 
         private final OrderRepository repository;
 
-        public Factory(@NonNull Application application, int orderId) {
+        public Factory(@NonNull Application application, String email) {
             this.application = application;
-            this.email = orderId;
+            this.email = email;
             repository = OrderRepository.getInstance();
         }
 

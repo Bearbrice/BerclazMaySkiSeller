@@ -124,7 +124,7 @@ public class DetailsOrderFragment extends Fragment {
             }
         });
 
-        int idOrder = Integer.parseInt(getActivity().getIntent().getStringExtra("idOrder"));
+        String idOrder = getActivity().getIntent().getStringExtra("idOrder");
 
         OrderViewModel.Factory factory = new OrderViewModel.Factory(getActivity().getApplication(), idOrder);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
