@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -55,6 +56,11 @@ public class DetailsProductFragment extends Fragment {
 
     private ProductEntity product;
 
+    private Button button_add;
+    private Button button_edit;
+    private Button button_delete;
+    private Button button_edit_save;
+
     /* *****************************
      * METHODS OF THE CLASS
      * *************************** */
@@ -89,8 +95,84 @@ public class DetailsProductFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_products_details, container, false);
+        initiateView(view);
 
+        button_add = view.findViewById(R.id.button_add);
+        button_edit = view.findViewById(R.id.button_edit);
+        button_delete = view.findViewById(R.id.button_delete);
+        button_edit_save = view.findViewById(R.id.button_edit_save);
 
+        /* Hidden by default*/
+        button_edit_save.setVisibility(View.GONE);
+
+        button_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createProduct(
+                        etProductName.getText().toString(),
+                        etColor.getText().toString(),
+                        Double.parseDouble(etPrice.getText().toString())
+                );
+            }
+        });
+
+        button_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isEditable) {
+                    changeButtonEditableMode(true);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    switchEditableMode();
+
+               }
+//                else {
+//                    switchEditableMode();
+//                    changeButtonEditableMode(false);
+//                }
+
+            }
+        });
+
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                alertDialog.setTitle(getString(R.string.product_delete));
+                alertDialog.setCancelable(false);
+                alertDialog.setMessage(getString(R.string.delete_msg));
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.product_delete), (dialog, which) -> {
+                    viewModel.deleteProduct(product, new OnAsyncEventListener() {
+                        @Override
+                        public void onSuccess() {
+                            Log.d(TAG, "deleteClient: success");
+                            getActivity().onBackPressed();
+                        }
+                        @Override
+                        public void onFailure(Exception e) {
+                            Log.d(TAG, "deleteClient: failure", e);
+                        }
+                    });
+                });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
+                alertDialog.show();
+            }
+        });
+
+        button_edit_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isEditable=!isEditable;
+            }
+        });
 
 //            @Override
 //            public void onItemLongClick(View v, int position) {
@@ -111,7 +193,6 @@ public class DetailsProductFragment extends Fragment {
 //        );
 
 
-
 //    ProductListViewModel.Factory factory = new ProductListViewModel.Factory(getActivity().getApplication());
 //    viewModel = ViewModelProviders.of(this, factory).get(ProductListViewModel.class);
 //        viewModel.getProducts().observe(this, clientEntities -> {
@@ -121,29 +202,63 @@ public class DetailsProductFragment extends Fragment {
 //        }
 //    });
 
-    String productName = getActivity().getIntent().getStringExtra("productName");
+        String productName = getActivity().getIntent().getStringExtra("productName");
 
-        initiateView(view);
 
-    ProductViewModel.Factory factory = new ProductViewModel.Factory(getActivity().getApplication(), productName);
+
+        ProductViewModel.Factory factory = new ProductViewModel.Factory(getActivity().getApplication(), productName);
         viewModel = ViewModelProviders.of(this, factory).get(ProductViewModel.class);
-            viewModel.getProduct().observe(this, productEntity -> {
+        viewModel.getProduct().observe(this, productEntity -> {
             if (productEntity != null) {
                 product = productEntity;
                 updateContent();
             }
-                updateContent();
+            updateContent();
         });
 
-            if (productName != null) {
+        if (productName != null) {
             getActivity().setTitle(R.string.title_fragment_details);
+            changeButtonVisibility(true);
         } else {
-                getActivity().setTitle(R.string.title_fragment_create);
+            getActivity().setTitle(R.string.title_fragment_create);
             switchEditableMode();
+            changeButtonVisibility(false);
         }
+
+
+//        /*Tell the main activity to have settings*/
+//        setHasOptionsMenu(true);
 
         return view;
     }
+
+    public void changeButtonVisibility(boolean visibility) {
+        if (visibility) {
+            button_add.setVisibility(View.VISIBLE);
+            button_edit.setVisibility(View.GONE);
+            button_delete.setVisibility(View.GONE);
+        } else {
+            button_add.setVisibility(View.GONE);
+            button_edit.setVisibility(View.VISIBLE);
+            button_delete.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void changeButtonEditableMode(boolean visibility){
+        if (visibility) {
+            //button_add.setVisibility(View.GONE);
+            button_edit.setVisibility(View.GONE);
+            button_delete.setVisibility(View.GONE);
+            button_edit_save.setVisibility(View.VISIBLE);
+        }
+        else{
+            //button_add.setVisibility(View.VISIBLE);
+            button_edit.setVisibility(View.VISIBLE);
+            button_delete.setVisibility(View.VISIBLE);
+            button_edit_save.setVisibility(View.GONE);
+        }
+    }
+
 
     private void initiateView(View view) {
         isEditable = false;
@@ -252,14 +367,9 @@ public class DetailsProductFragment extends Fragment {
         if (product != null) {
             etProductName.setText(product.getProductName());
             etColor.setText(product.getColor());
-//            etPrice.setText((int) product.getPrice());
+            etPrice.setText(new Double(product.getPrice()).toString());
         }
     }
-
-
-
-
-
 
 
 }

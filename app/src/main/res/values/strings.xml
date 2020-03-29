@@ -53,6 +53,19 @@
     <string name="action_error">Something went wrong</string>
     <string name="product_edited">Product edited</string>
 
+    <string name="product_add">Add</string>
+
+    <string name="product_edit">Edit</string>
+
+    <string name="product_delete">Delete</string>
+
+    <string name="product_edit_save">Save changes</string>
+
+    <string name="delete_msg">Do you really want to delete this client?</string>
+
+    <string name="action_cancel">Cancel</string>
+
+
 
     <string-array name="skiBrands">
         <item>All brands</item>

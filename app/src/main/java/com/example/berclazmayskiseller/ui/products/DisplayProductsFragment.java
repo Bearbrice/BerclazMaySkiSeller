@@ -21,6 +21,7 @@ import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,16 +81,15 @@ public class DisplayProductsFragment extends Fragment {
             }
         });
 
-//        FloatingActionButton fab = getActivity().findViewById(R.id.floatingActionButton);
-//        fab.setOnClickListener(view -> {
-//                    Intent intent = new Intent(MainActivity.this, ClientDetails.class);
-//                    intent.setFlags(
-//                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
-//                                    Intent.FLAG_ACTIVITY_NO_HISTORY
-//                    );
-//                    startActivity(intent);
-//                }
-//        );
+        /* Programming the add button */
+        FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       addFragment(new DetailsProductFragment(null), getActivity(), R.id.container_products, false, "one");
+                                   }
+                               }
+        );
 
         ProductListViewModel.Factory factory = new ProductListViewModel.Factory(getActivity().getApplication());
         viewModel = ViewModelProviders.of(this, factory).get(ProductListViewModel.class);
@@ -111,8 +111,8 @@ public class DisplayProductsFragment extends Fragment {
 //        // automatically handle clicks on the Home/Up button, so long
 //        // as you specify a parent activity in AndroidManifest.xml.
 //        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
+////
+////        //noinspection SimplifiableIfStatement
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
