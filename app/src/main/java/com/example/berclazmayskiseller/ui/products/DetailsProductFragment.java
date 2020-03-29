@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -121,24 +122,12 @@ public class DetailsProductFragment extends Fragment {
             public void onClick(View v) {
                 if (isEditable) {
                     changeButtonEditableMode(true);
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     switchEditableMode();
-
-               }
-//                else {
-//                    switchEditableMode();
-//                    changeButtonEditableMode(false);
-//                }
-
+                } else {
+                    switchEditableMode();
+                    changeButtonEditableMode(false);
+                    button_edit.setText("Save changes");
+                }
             }
         });
 
@@ -156,6 +145,7 @@ public class DetailsProductFragment extends Fragment {
                             Log.d(TAG, "deleteClient: success");
                             getActivity().onBackPressed();
                         }
+
                         @Override
                         public void onFailure(Exception e) {
                             Log.d(TAG, "deleteClient: failure", e);
@@ -170,7 +160,7 @@ public class DetailsProductFragment extends Fragment {
         button_edit_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isEditable=!isEditable;
+                isEditable = !isEditable;
             }
         });
 
@@ -204,8 +194,6 @@ public class DetailsProductFragment extends Fragment {
 
         String productName = getActivity().getIntent().getStringExtra("productName");
 
-
-
         ProductViewModel.Factory factory = new ProductViewModel.Factory(getActivity().getApplication(), productName);
         viewModel = ViewModelProviders.of(this, factory).get(ProductViewModel.class);
         viewModel.getProduct().observe(this, productEntity -> {
@@ -216,13 +204,17 @@ public class DetailsProductFragment extends Fragment {
             updateContent();
         });
 
-        if (productName != null) {
+        //System.out.println(productName);
+
+        //!= null
+        //if (product.getProductName() != null) {
+        if (product!=null) {
             getActivity().setTitle(R.string.title_fragment_details);
-            changeButtonVisibility(true);
+            changeButtonVisibility(false);
         } else {
             getActivity().setTitle(R.string.title_fragment_create);
             switchEditableMode();
-            changeButtonVisibility(false);
+            changeButtonVisibility(true);
         }
 
 
@@ -232,26 +224,29 @@ public class DetailsProductFragment extends Fragment {
         return view;
     }
 
-    public void changeButtonVisibility(boolean visibility) {
+    private void changeButtonVisibility(boolean visibility) {
         if (visibility) {
             button_add.setVisibility(View.VISIBLE);
             button_edit.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
+
+
         } else {
             button_add.setVisibility(View.GONE);
             button_edit.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
+
+
         }
     }
 
-    public void changeButtonEditableMode(boolean visibility){
+    private void changeButtonEditableMode(boolean visibility) {
         if (visibility) {
             //button_add.setVisibility(View.GONE);
             button_edit.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
             button_edit_save.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             //button_add.setVisibility(View.VISIBLE);
             button_edit.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
@@ -278,8 +273,12 @@ public class DetailsProductFragment extends Fragment {
         if (!isEditable) {
             etProductName.setFocusable(true);
             etProductName.setEnabled(true);
+            etProductName.setFocusableInTouchMode(true);
+
             etColor.setFocusable(true);
             etColor.setEnabled(true);
+            etColor.setFocusableInTouchMode(true);
+
             etPrice.setFocusable(true);
             etPrice.setEnabled(true);
             etPrice.setFocusableInTouchMode(true);
