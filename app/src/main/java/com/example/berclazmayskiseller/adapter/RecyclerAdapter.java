@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.berclazmayskiseller.R;
+import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
 
@@ -59,6 +60,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 //            holder.mTextView.setText(((ClientEntity) item).getFirstName() + " " + ((ClientEntity) item).getLastName());
         if (item.getClass().equals(ProductEntity.class))
             holder.mTextView.setText(((ProductEntity) item).getProductName());
+        if (item.getClass().equals(OrderEntity.class))
+            holder.mTextView.setText(((OrderEntity) item).getIdOrder() + " - Product ID : " +((OrderEntity) item).getProduct_id());
     }
 
     @Override
@@ -98,6 +101,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof ProductEntity) {
                        return ((ProductEntity) mData.get(oldItemPosition)).getProductName().equals(((ProductEntity) data.get(newItemPosition)).getProductName());
                     }
+                    /* NOT IMPLEMENTED FOR ORDERS */
                     return false;
                 }
 
@@ -125,6 +129,14 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         return Objects.equals(newProduct.getProductName(), oldProduct.getProductName())
                                 && Objects.equals(newProduct.getPrice(), oldProduct.getPrice())
                                 && Objects.equals(newProduct.getColor(), oldProduct.getColor());
+                    }
+                    if (mData instanceof OrderEntity) {
+                        OrderEntity newOrder = (OrderEntity) data.get(newItemPosition);
+                        OrderEntity oldOrder = (OrderEntity) mData.get(newItemPosition);
+                        return Objects.equals(newOrder.getIdOrder(), oldOrder.getIdOrder())
+                                && Objects.equals(newOrder.getOrderDate(), oldOrder.getOrderDate())
+                                && Objects.equals(newOrder.getClientEmail(), oldOrder.getClientEmail())
+                                && Objects.equals(newOrder.getProduct_id(), oldOrder.getProduct_id());
                     }
                     return false;
                 }

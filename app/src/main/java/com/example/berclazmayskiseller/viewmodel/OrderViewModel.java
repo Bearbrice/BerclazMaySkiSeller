@@ -53,9 +53,9 @@ public class OrderViewModel extends AndroidViewModel {
 
         private final OrderRepository repository;
 
-        public Factory(@NonNull Application application, String email) {
+        public Factory(@NonNull Application application, String orderEmail) {
             this.application = application;
-            this.email = email;
+            this.email = orderEmail;
             repository = OrderRepository.getInstance();
         }
 

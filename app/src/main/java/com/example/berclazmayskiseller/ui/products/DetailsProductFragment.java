@@ -26,13 +26,17 @@ import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
+import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.example.berclazmayskiseller.ui.AddFragment.addFragment;
@@ -54,13 +58,16 @@ public class DetailsProductFragment extends Fragment {
     private EditText etPrice;
 
     private ProductViewModel viewModel;
+    private OrderViewModel orderViewModel;
 
     private ProductEntity product;
+    private OrderEntity order;
 
     private Button button_add;
     private Button button_edit;
     private Button button_delete;
-    private Button button_edit_save;
+    //private Button button_edit_save;
+    private Button button_place_order;
 
     /* *****************************
      * METHODS OF THE CLASS
@@ -75,6 +82,7 @@ public class DetailsProductFragment extends Fragment {
 
     public DetailsProductFragment(ProductEntity productEntity) {
         product = productEntity;
+
     }
 
     @Override
@@ -101,10 +109,11 @@ public class DetailsProductFragment extends Fragment {
         button_add = view.findViewById(R.id.button_add);
         button_edit = view.findViewById(R.id.button_edit);
         button_delete = view.findViewById(R.id.button_delete);
-        button_edit_save = view.findViewById(R.id.button_edit_save);
+        //button_edit_save = view.findViewById(R.id.button_edit_save);
+        button_place_order = view.findViewById(R.id.button_place_order);
 
         /* Hidden by default*/
-        button_edit_save.setVisibility(View.GONE);
+        //button_edit_save.setVisibility(View.GONE);
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,10 +166,21 @@ public class DetailsProductFragment extends Fragment {
             }
         });
 
-        button_edit_save.setOnClickListener(new View.OnClickListener() {
+//        button_edit_save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                isEditable = !isEditable;
+//            }
+//        });
+
+        button_place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isEditable = !isEditable;
+                //OrderEntity newOrder = new OrderEntity();
+
+                createOrder();
+
+
             }
         });
 
@@ -208,7 +228,7 @@ public class DetailsProductFragment extends Fragment {
 
         //!= null
         //if (product.getProductName() != null) {
-        if (product!=null) {
+        if (product != null) {
             getActivity().setTitle(R.string.title_fragment_details);
             changeButtonVisibility(false);
         } else {
@@ -229,12 +249,14 @@ public class DetailsProductFragment extends Fragment {
             button_add.setVisibility(View.VISIBLE);
             button_edit.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
+            button_place_order.setVisibility(View.GONE);
 
 
         } else {
             button_add.setVisibility(View.GONE);
             button_edit.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
+            button_place_order.setVisibility(View.VISIBLE);
 
 
         }
@@ -245,12 +267,12 @@ public class DetailsProductFragment extends Fragment {
             //button_add.setVisibility(View.GONE);
             button_edit.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
-            button_edit_save.setVisibility(View.VISIBLE);
+//            button_edit_save.setVisibility(View.VISIBLE);
         } else {
             //button_add.setVisibility(View.VISIBLE);
             button_edit.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
-            button_edit_save.setVisibility(View.GONE);
+//            button_edit_save.setVisibility(View.GONE);
         }
     }
 
@@ -323,6 +345,44 @@ public class DetailsProductFragment extends Fragment {
                 Log.d(TAG, "createProduct: failure", e);
             }
         });
+    }
+
+    private void createOrder() {
+//        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(price).matches()) {
+//            etPrice.setError(getString(R.string.error_invalid_price));
+//            etPrice.requestFocus();
+//            return;
+//        }
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String dateOrder = formatter.format(date);
+
+        //String email = getString(R.string.user_connected);
+        String email = "test@gmail.com";
+
+        order = new OrderEntity();
+        order.setOrderDate(dateOrder);
+        order.setProduct_id(product.getIdProduct());
+        order.setClientEmail(email);
+
+        OrderViewModel.Factory factory = new OrderViewModel.Factory(getActivity().getApplication(), email);
+        orderViewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
+
+        orderViewModel.createOrder(order, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "createOrder: success");
+                statusToast = Toast.makeText(getActivity(), getString(R.string.order_created), Toast.LENGTH_LONG);
+                statusToast.show();
+                getActivity().onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.d(TAG, "createProduct: failure", e);
+            }
+        });
+
     }
 
     private void saveChanges(String productName, String color, double price) {

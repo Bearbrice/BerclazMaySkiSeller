@@ -155,7 +155,6 @@ public class DetailsOrderFragment extends Fragment {
         etClientEmail = view.findViewById(R.id.client_email);
         etProductId = view.findViewById(R.id.product_id);
 
-
         etIdOrder.setFocusable(false);
         etIdOrder.setEnabled(false);
         etOrderDate.setFocusable(false);
@@ -264,10 +263,10 @@ public class DetailsOrderFragment extends Fragment {
 
     private void updateContent() {
         if (order != null) {
-            etIdOrder.setText(order.getIdOrder());
+            etIdOrder.setText(Integer.toString(order.getIdOrder()));
             etOrderDate.setText(order.getOrderDate());
             etClientEmail.setText(order.getClientEmail());
-            etProductId.setText(order.getProduct_id());
+            etProductId.setText(Integer.toString(order.getProduct_id()));
         }
     }
 

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,12 +33,21 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private String CHANNEL_ID = "test_notification  ";
 
+    private TextView email;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         //Get shared preferences for switches
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        email = view.findViewById(R.id.textViewEmail);
+
+        String user = (String) getResources().getText(R.string.user_connected);
+
+        email.setText(user);
+//        view.findViewById(R.id.textViewEmail);
 
         //NOTIFICATIONS SWITCH----------------------------------------------
         Switch notifications = view.findViewById(R.id.switch_notifications);
@@ -187,7 +197,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Button newBlockButton = (Button) getActivity().findViewById(
                 R.id.button_logout);
-        newBlockButton.setOnClickListener((View.OnClickListener) this);
+        newBlockButton.setOnClickListener(this);
     }
 
     @Override

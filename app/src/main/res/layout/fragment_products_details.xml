@@ -73,13 +73,21 @@
             android:text="@string/product_delete"
             android:textSize="18sp"></Button>
 
+<!--        <Button-->
+<!--            android:id="@+id/button_edit_save"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:backgroundTint="@color/colorPrimary"-->
+<!--            android:text="@string/product_edit_save"-->
+<!--            android:textSize="18sp"></Button>-->
+
         <Button
-            android:id="@+id/button_edit_save"
+            android:id="@+id/button_place_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
-            android:text="@string/product_edit_save"
-            android:textSize="18sp"></Button>
+            android:text="@string/product_place_order"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

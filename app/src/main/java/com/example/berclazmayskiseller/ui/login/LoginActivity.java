@@ -1,5 +1,6 @@
 package com.example.berclazmayskiseller.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -119,9 +120,12 @@ public class LoginActivity extends AppCompatActivity {
                     if (clientEntity.getPassword().equals(password)) {
                         // We need an Editor object to make preference changes.
                         // All objects are from android.context.Context
-//                        SharedPreferences.Editor editor = getSharedPreferences(BaseActivity.PREFS_NAME, 0).edit();
-//                        editor.putString(BaseActivity.PREFS_USER, clientEntity.getEmail());
-//                        editor.apply();
+
+                        /* Store the email connected */
+                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString(String.valueOf(R.string.user_connected), email);
+                        editor.commit();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

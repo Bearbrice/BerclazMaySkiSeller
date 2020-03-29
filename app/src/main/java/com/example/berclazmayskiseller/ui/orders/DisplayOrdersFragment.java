@@ -63,7 +63,6 @@ public class DisplayOrdersFragment extends Fragment {
                 Log.d(TAG, "clicked on: " + orders.get(position).toString());
 
                 addFragment(new DetailsOrderFragment(orders.get(position)), getActivity(), R.id.container_orders, false, "one");
-
             }
 
             @Override
@@ -84,6 +83,7 @@ public class DisplayOrdersFragment extends Fragment {
         });
 
         recyclerView.setAdapter(recyclerAdapter);
+
 
         return view;
     }
