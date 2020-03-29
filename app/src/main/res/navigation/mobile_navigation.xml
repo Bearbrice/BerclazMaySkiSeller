@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_products" />
 
     <fragment
-        android:id="@+id/navigation_myReservations"
-        android:name="com.example.berclazmayskiseller.ui.myreservations.MyReservationsFragment"
-        android:label="@string/title_myReservation"
-        tools:layout="@layout/fragment_myreservations" />
+        android:id="@+id/navigation_myOrders"
+        android:name="com.example.berclazmayskiseller.ui.orders.OrdersFragment"
+        android:label="@string/title_myOrders"
+        tools:layout="@layout/fragment_orders" />
 
     <fragment
         android:id="@+id/navigation_findUs"

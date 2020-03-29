@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.berclazmayskiseller.db.AppDatabase;
 import com.example.berclazmayskiseller.db.repository.ClientRepository;
+import com.example.berclazmayskiseller.db.repository.OrderRepository;
 
 /**
  * Android Application class. Used for accessing singletons.

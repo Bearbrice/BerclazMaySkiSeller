@@ -12,9 +12,9 @@
         android:title="@string/title_products" />
 
     <item
-        android:id="@+id/navigation_myReservations"
+        android:id="@+id/navigation_myOrders"
         android:icon="@drawable/ic_my_reservations"
-        android:title="@string/title_reservations" />
+        android:title="@string/title_myOrders" />
 
     <item
         android:id="@+id/navigation_findUs"

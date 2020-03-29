@@ -2,7 +2,7 @@
     <string name="app_name">Ski seller</string>
     <string name="title_home">Home</string>
     <string name="title_products">Products</string>
-    <string name="title_myReservation">My reservations</string>
+    <string name="title_myOrders">My orders</string>
     <string name="title_reservations">Reservations</string>
     <string name="title_findUs">Find us</string>
     <string name="title_settings">Settings</string>
@@ -54,16 +54,18 @@
     <string name="product_edited">Product edited</string>
 
     <string name="product_add">Add</string>
-
     <string name="product_edit">Edit</string>
-
     <string name="product_delete">Delete</string>
-
     <string name="product_edit_save">Save changes</string>
-
     <string name="delete_msg">Do you really want to delete this client?</string>
-
     <string name="action_cancel">Cancel</string>
+
+    <!-- Strings related to orders -->
+    <string name="order_id">Order #ID</string>
+    <string name="order_date">Color</string>
+    <string name="order_idProduct">Product #ID</string>
+    <string name="order_idClient">Email</string>
+    <string name="order_delete">Delete order</string>
 
 
 

@@ -20,7 +20,8 @@ public class ClientRepository {
 
     private static ClientRepository instance;
 
-    private ClientRepository() {}
+    private ClientRepository() {
+    }
 
     public static ClientRepository getInstance() {
         if (instance == null) {

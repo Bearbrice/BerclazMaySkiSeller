@@ -3,6 +3,7 @@ package com.example.berclazmayskiseller.db;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 
 public class DatabaseInitializer {
@@ -20,6 +21,11 @@ public class DatabaseInitializer {
         db.productDao().insert(product);
     }
 
+    private static void addOrder(final AppDatabase db, String orderDate, String clientEmail, int product_id) {
+        OrderEntity order = new OrderEntity(orderDate, clientEmail, product_id);
+        db.orderDao().insert(order);
+    }
+
     private static void populateWithTestData(AppDatabase db) {
         db.productDao().deleteAll();
 
@@ -29,17 +35,13 @@ public class DatabaseInitializer {
         addProduct(db, "Descente Nice 2019", 600, "Red");
         addProduct(db, "Salomon Free 2015", 200, "Grey");
 
+        db.orderDao().deleteAll();
 
-//        db.brandDao().deleteAll();
-//
-//        addBrand(db, "Rossignol");
-//        addBrand(db, "Dynastar");
-//        addBrand(db, "K2");
-//        addBrand(db, "Head");
-//
-//        db.productDao().deleteAll();
-//
-//        addProduct(db, "Dynamic", 200.00,"blue", "2");
+        addOrder(db, "TODAY", "test@gmail.com" , 1);
+        addOrder(db, "TODAY", "test@gmail.com" , 2);
+        addOrder(db, "TODAY", "test@gmail.com" , 3);
+        addOrder(db, "TODAY", "test@gmail.com" , 4);
+
     }
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {

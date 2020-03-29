@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller.ui.myreservations;
+package com.example.berclazmayskiseller.ui.orders;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
