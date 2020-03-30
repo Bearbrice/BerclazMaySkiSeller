@@ -99,7 +99,7 @@ public class DetailsOrderFragment extends Fragment {
         imageButton_backToSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addFragment(new DisplayOrdersFragment(), getActivity(), R.id.container_products, false, "one");
+                addFragment(new DisplayOrdersFragment(), getActivity(), R.id.container_orders, false, "one");
             }
         });
 

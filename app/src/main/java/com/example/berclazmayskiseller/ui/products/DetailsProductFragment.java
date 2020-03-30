@@ -415,7 +415,8 @@ public class DetailsProductFragment extends Fragment {
             public void onSuccess() {
                 Log.d(TAG, "updateProduct: success");
                 setResponse(true);
-                getActivity().onBackPressed();
+//                getActivity().onBackPressed();
+                addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
 
             @Override
