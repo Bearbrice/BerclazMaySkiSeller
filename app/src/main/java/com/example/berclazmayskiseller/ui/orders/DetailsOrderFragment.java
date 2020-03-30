@@ -2,21 +2,13 @@ package com.example.berclazmayskiseller.ui.orders;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,17 +17,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
+import com.example.berclazmayskiseller.db.entity.ProductEntity;
+import com.example.berclazmayskiseller.db.repository.ProductRepository;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
-import com.example.berclazmayskiseller.viewmodel.OrderListViewModel;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
+import com.example.berclazmayskiseller.viewmodel.ProductIdViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.berclazmayskiseller.ui.AddFragment.addFragment;
 
 public class DetailsOrderFragment extends Fragment {
 
@@ -53,10 +43,15 @@ public class DetailsOrderFragment extends Fragment {
     private EditText etOrderDate;
     private EditText etClientEmail;
     private EditText etProductId;
+    private EditText etProductInfo;
 
     private OrderViewModel viewModel;
 
     private OrderEntity order;
+
+    private ProductIdViewModel productIdViewModel;
+    private ProductEntity product;
+    private ProductRepository productRepository;
 
     private Button button_delete;
 
@@ -135,10 +130,34 @@ public class DetailsOrderFragment extends Fragment {
             }
             updateContent();
         });
+        
+//        productRepository = ProductRepository.getInstance();
+//        LiveData<ProductEntity> product = productRepository.getProductById(order.getProduct_id(), getContext());
+//        product.
+//        updateTV(txt);
+        
+
+        ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProduct_id());
+        productIdViewModel = ViewModelProviders.of(this, factory2).get(ProductIdViewModel.class);
+        productIdViewModel.getProduct().observe(this, productEntity -> {
+            if (productEntity != null) {
+                product = productEntity;
+                updateTV(product.getProductName());
+            }
+            //updateTV("Product not found");
+        });
 
 
-            //switchEditableMode();
+//        viewModel.getOrder().observe(this, orderEntity -> {
+//            if (orderEntity != null) {
+//                order = orderEntity;
+//                updateContent();
+//            }
+//            updateContent();
+//        });
 
+
+        //switchEditableMode();
 
 
 //        /*Tell the main activity to have settings*/
@@ -154,6 +173,7 @@ public class DetailsOrderFragment extends Fragment {
         etOrderDate = view.findViewById(R.id.order_date);
         etClientEmail = view.findViewById(R.id.client_email);
         etProductId = view.findViewById(R.id.product_id);
+        etProductInfo = view.findViewById(R.id.product_infos);
 
         etIdOrder.setFocusable(false);
         etIdOrder.setEnabled(false);
@@ -163,6 +183,8 @@ public class DetailsOrderFragment extends Fragment {
         etClientEmail.setEnabled(false);
         etProductId.setFocusable(false);
         etProductId.setEnabled(false);
+        etProductInfo.setFocusable(false);
+        etProductInfo.setEnabled(false);
     }
 
 //    private void switchEditableMode() {
@@ -260,6 +282,10 @@ public class DetailsOrderFragment extends Fragment {
 //            statusToast.show();
 //        }
 //    }
+
+    private void updateTV(String txt) {
+        etProductInfo.setText(txt);
+    }
 
     private void updateContent() {
         if (order != null) {

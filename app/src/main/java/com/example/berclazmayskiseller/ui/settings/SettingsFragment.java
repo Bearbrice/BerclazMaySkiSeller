@@ -40,13 +40,18 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         //Get shared preferences for switches
-        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+        String user = sharedPref.getString("emailSaved", "NotFound");
         email = view.findViewById(R.id.textViewEmail);
-
-        String user = (String) getResources().getText(R.string.user_connected);
-
         email.setText(user);
+
+//        String defaultValue = String.valueOf(getResources().getText(R.string.user_connected));
+//        String actualValue = sharedPref.getString(String.valueOf(R.string.user_connected), defaultValue);
+//        email = view.findViewById(R.id.textViewEmail);
+//        email.setText(actualValue);
+
+//        String user = (String) getResources().getText(R.string.user_connected);
+//        email.setText(user);
 //        view.findViewById(R.id.textViewEmail);
 
         //NOTIFICATIONS SWITCH----------------------------------------------

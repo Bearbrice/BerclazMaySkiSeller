@@ -34,6 +34,10 @@ public class ProductRepository {
         return AppDatabase.getInstance(context).productDao().getByName(name);
     }
 
+    public LiveData<ProductEntity> getProductById(final int id, Context context) {
+        return AppDatabase.getInstance(context).productDao().getById(id);
+    }
+
     public LiveData<List<ProductEntity>> getAllProducts(Context context) {
         return AppDatabase.getInstance(context).productDao().getAll();
     }

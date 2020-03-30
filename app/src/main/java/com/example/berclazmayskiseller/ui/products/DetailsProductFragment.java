@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -358,7 +360,9 @@ public class DetailsProductFragment extends Fragment {
         String dateOrder = formatter.format(date);
 
         //String email = getString(R.string.user_connected);
-        String email = "test@gmail.com";
+        //String email = "test@gmail.com";
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+        String email = sharedPref.getString("emailSaved", "NotFound");
 
         order = new OrderEntity();
         order.setOrderDate(dateOrder);

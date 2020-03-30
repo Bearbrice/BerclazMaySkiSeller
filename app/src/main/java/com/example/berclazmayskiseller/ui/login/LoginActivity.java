@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -122,9 +123,14 @@ public class LoginActivity extends AppCompatActivity {
                         // All objects are from android.context.Context
 
                         /* Store the email connected */
-                        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+//                        SharedPreferences sharedpreferences = getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedpreferences.edit();
+//                        editor.putString(key, value);
+//                        editor.apply();
+
+                        SharedPreferences sharedPref = getSharedPreferences("email", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();
-                        editor.putString(String.valueOf(R.string.user_connected), email);
+                        editor.putString("emailSaved", email);
                         editor.commit();
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

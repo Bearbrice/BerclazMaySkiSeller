@@ -19,6 +19,9 @@ public interface ProductDao {
     @Query("SELECT * FROM products WHERE product_name = :name")
     LiveData<ProductEntity> getByName(String name);
 
+    @Query("SELECT * FROM products WHERE idProduct = :id")
+    LiveData<ProductEntity> getById(int id);
+
     @Query("SELECT * FROM products")
     LiveData<List<ProductEntity>> getAll();
 
