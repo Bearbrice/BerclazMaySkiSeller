@@ -92,6 +92,8 @@
             android:id="@+id/editButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/font_button"
             android:text="@string/action_register" />
 
     </LinearLayout>
