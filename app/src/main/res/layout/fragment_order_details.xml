@@ -13,6 +13,15 @@
         android:layout_marginRight="16dp"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/text_order_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_title_order_info" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -49,6 +58,15 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/text_product_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/order_title_product_info" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -61,13 +79,25 @@
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/product_infos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/order_product_info"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/button_delete_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/product_delete"
-            android:textSize="18sp"></Button>
+            android:textSize="18sp" />
 
 
     </LinearLayout>

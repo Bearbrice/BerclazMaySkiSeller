@@ -24,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
@@ -108,16 +107,6 @@ public class DetailsProductFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_products_details, container, false);
         initiateView(view);
-
-        //Back button
-        ImageButton imageButton_backToSearch = (ImageButton) view.findViewById(R.id.imageButton_backToSearch);
-        imageButton_backToSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
-            }
-        });
-
 
         button_add = view.findViewById(R.id.button_add);
         button_edit = view.findViewById(R.id.button_edit);

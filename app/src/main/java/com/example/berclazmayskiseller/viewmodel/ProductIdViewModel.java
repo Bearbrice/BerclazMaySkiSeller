@@ -24,7 +24,7 @@ public class ProductIdViewModel extends AndroidViewModel {
     private final MediatorLiveData<ProductEntity> observableProduct;
 
     public ProductIdViewModel(@NonNull Application application,
-                            final int id, ProductRepository productRepository) {
+                              final int id, ProductRepository productRepository) {
         super(application);
 
         repository = productRepository;

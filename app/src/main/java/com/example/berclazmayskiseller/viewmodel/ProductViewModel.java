@@ -24,7 +24,7 @@ public class ProductViewModel extends AndroidViewModel {
     private final MediatorLiveData<ProductEntity> observableProduct;
 
     public ProductViewModel(@NonNull Application application,
-                           final String productName, ProductRepository productRepository) {
+                            final String productName, ProductRepository productRepository) {
         super(application);
 
         repository = productRepository;
