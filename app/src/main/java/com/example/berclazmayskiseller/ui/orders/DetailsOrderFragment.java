@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
@@ -29,6 +30,7 @@ import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.ui.products.DisplayProductsFragment;
 import com.example.berclazmayskiseller.viewmodel.OrderListViewModel;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 
@@ -95,6 +97,15 @@ public class DetailsOrderFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_order_details, container, false);
         initiateView(view);
+
+        //Back button
+        ImageButton imageButton_backToSearch = (ImageButton) view.findViewById(R.id.imageButton_backToSearch);
+        imageButton_backToSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
+            }
+        });
 
         button_delete = view.findViewById(R.id.button_delete_order);
 

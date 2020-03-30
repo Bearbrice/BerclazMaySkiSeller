@@ -24,7 +24,6 @@ public class OrdersFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_orders, container, false);
-//        addFragment(new SearchProductFragment(), false, "one");
         addFragment(new DisplayOrdersFragment(), getActivity(), R.id.container_orders, false, "one");
 
         return view;

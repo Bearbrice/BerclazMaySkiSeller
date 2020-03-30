@@ -65,6 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/font_button"
                 android:textStyle="bold" />
 
             <Button
@@ -74,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_register"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/font_button"
                 android:textStyle="bold" />
 
             <View
