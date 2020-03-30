@@ -117,7 +117,8 @@ public class DetailsOrderFragment extends Fragment {
                         @Override
                         public void onSuccess() {
                             Log.d(TAG, "deleteClient: success");
-                            getActivity().onBackPressed();
+//                            getActivity().onBackPressed();
+                            addFragment(new DisplayOrdersFragment(), getActivity(), R.id.container_orders, false, "one");
                         }
 
                         @Override
