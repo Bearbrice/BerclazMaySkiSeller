@@ -46,7 +46,7 @@ public class DisplayOrdersFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_orders_display, container, false);
+        View view = inflater.inflate(R.layout.fragment_orders_list, container, false);
 
         // 1. get a reference to recyclerView
         RecyclerView recyclerView = view.findViewById(R.id.ordersRecyclerView);
