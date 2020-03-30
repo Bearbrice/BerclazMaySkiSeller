@@ -65,11 +65,16 @@
 
     <!-- Strings related to orders -->
     <string name="order_id">Order #ID</string>
-    <string name="order_date">Color</string>
+    <string name="order_date">Order date</string>
     <string name="order_idProduct">Product #ID</string>
     <string name="order_idClient">Email</string>
     <string name="order_delete">Delete order</string>
     <string name="order_created">Order successfully created</string>
+    <string name="order_product_info">Product information</string>
+
+    <string name="order_title_order_info">Order information</string>
+
+    <string name="order_title_product_info">Product information</string>
 
 
 

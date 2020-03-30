@@ -14,7 +14,7 @@ import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.repository.ProductRepository;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 
-public class ProductViewModel extends AndroidViewModel {
+public class ProductIdViewModel extends AndroidViewModel {
 
     private ProductRepository repository;
 
@@ -23,8 +23,8 @@ public class ProductViewModel extends AndroidViewModel {
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<ProductEntity> observableProduct;
 
-    public ProductViewModel(@NonNull Application application,
-                           final String productName, ProductRepository productRepository) {
+    public ProductIdViewModel(@NonNull Application application,
+                            final int id, ProductRepository productRepository) {
         super(application);
 
         repository = productRepository;
@@ -35,7 +35,7 @@ public class ProductViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableProduct.setValue(null);
 
-        LiveData<ProductEntity> product = repository.getProduct(productName, applicationContext);
+        LiveData<ProductEntity> product = repository.getProductById(id, applicationContext);
 
         // observe the changes of the product entity from the database and forward them
         observableProduct.addSource(product, observableProduct::setValue);
@@ -49,20 +49,20 @@ public class ProductViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String email;
+        private final int id;
 
         private final ProductRepository repository;
 
-        public Factory(@NonNull Application application, String productEmail) {
+        public Factory(@NonNull Application application, int id) {
             this.application = application;
-            this.email = productEmail;
+            this.id = id;
             repository = ProductRepository.getInstance();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new ProductViewModel(application, email, repository);
+            return (T) new ProductIdViewModel(application, id, repository);
         }
     }
 
