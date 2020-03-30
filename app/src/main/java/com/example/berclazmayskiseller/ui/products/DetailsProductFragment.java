@@ -2,23 +2,15 @@ package com.example.berclazmayskiseller.ui.products;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +20,10 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
-import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductViewModel;
 
 import java.text.SimpleDateFormat;
@@ -106,7 +95,7 @@ public class DetailsProductFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_products_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_product_details, container, false);
         initiateView(view);
 
         //Back button

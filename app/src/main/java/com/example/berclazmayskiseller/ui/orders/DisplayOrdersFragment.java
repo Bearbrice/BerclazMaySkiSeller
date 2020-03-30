@@ -1,13 +1,14 @@
 package com.example.berclazmayskiseller.ui.orders;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,7 +22,6 @@ import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.OrderListViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class DisplayOrdersFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_orders_display, container, false);
+        View view = inflater.inflate(R.layout.fragment_orders_list, container, false);
 
         // 1. get a reference to recyclerView
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.ordersRecyclerView);

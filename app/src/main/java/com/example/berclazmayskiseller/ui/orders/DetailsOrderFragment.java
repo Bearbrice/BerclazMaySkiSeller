@@ -91,7 +91,7 @@ public class DetailsOrderFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_order_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_orders_details, container, false);
         initiateView(view);
 
         //Back button

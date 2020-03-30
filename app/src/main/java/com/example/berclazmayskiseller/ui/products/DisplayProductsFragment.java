@@ -1,10 +1,8 @@
 package com.example.berclazmayskiseller.ui.products;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +42,7 @@ public class DisplayProductsFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_temp_product_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_products_list, container, false);
 
         // 1. get a reference to recyclerView
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.clientsRecyclerView);
