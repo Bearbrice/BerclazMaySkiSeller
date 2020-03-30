@@ -1,5 +1,6 @@
 package com.example.berclazmayskiseller.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -73,6 +74,11 @@ public class RegisterActivity extends AppCompatActivity {
             public void onSuccess() {
                 Log.d(TAG, "createUserWithEmail: success");
                 setResponse(true);
+
+                SharedPreferences sharedPref = getSharedPreferences("email", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("emailSaved", email);
+                editor.commit();
             }
 
             @Override

@@ -25,7 +25,7 @@ public class OrderListViewModel extends AndroidViewModel {
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<OrderEntity>> observableOrders;
 
-    public OrderListViewModel(@NonNull Application application, OrderRepository orderRepository) {
+    public OrderListViewModel(@NonNull Application application, OrderRepository orderRepository, String email) {
         super(application);
 
         repository = orderRepository;
@@ -36,7 +36,7 @@ public class OrderListViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableOrders.setValue(null);
 
-        LiveData<List<OrderEntity>> orders = repository.getAllOrders(applicationContext);
+        LiveData<List<OrderEntity>> orders = repository.getByOwners(email, applicationContext);
 
         // observe the changes of the entities from the database and forward them
         observableOrders.addSource(orders, observableOrders::setValue);
@@ -52,15 +52,18 @@ public class OrderListViewModel extends AndroidViewModel {
 
         private final OrderRepository orderRepository;
 
-        public Factory(@NonNull Application application) {
+        private final String email;
+
+        public Factory(@NonNull Application application, String email) {
             this.application = application;
             orderRepository = OrderRepository.getInstance();
+            this.email=email;
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new OrderListViewModel(application, orderRepository);
+            return (T) new OrderListViewModel(application, orderRepository, email);
         }
     }
 

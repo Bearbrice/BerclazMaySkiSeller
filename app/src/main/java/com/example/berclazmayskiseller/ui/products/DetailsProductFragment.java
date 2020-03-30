@@ -164,12 +164,19 @@ public class DetailsProductFragment extends Fragment {
                         @Override
                         public void onSuccess() {
                             Log.d(TAG, "deleteClient: success");
-                            getActivity().onBackPressed();
+//                            getActivity().onBackPressed();
+                            addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
                         }
 
                         @Override
                         public void onFailure(Exception e) {
                             Log.d(TAG, "deleteClient: failure", e);
+                            AlertDialog fail = new AlertDialog.Builder(getActivity()).create();
+                            fail.setTitle(getString(R.string.product_error_delete));
+                            fail.setCancelable(false);
+                            fail.setMessage(getString(R.string.product_msg_error_delete));
+                            fail.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
+                            fail.show();
                         }
                     });
                 });
@@ -349,7 +356,8 @@ public class DetailsProductFragment extends Fragment {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "createProduct: success");
-                getActivity().onBackPressed();
+//                getActivity().onBackPressed();
+                addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
 
             @Override
@@ -388,7 +396,8 @@ public class DetailsProductFragment extends Fragment {
                 Log.d(TAG, "createOrder: success");
                 statusToast = Toast.makeText(getActivity(), getString(R.string.order_created), Toast.LENGTH_LONG);
                 statusToast.show();
-                getActivity().onBackPressed();
+//                getActivity().onBackPressed();
+                addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
 
             @Override

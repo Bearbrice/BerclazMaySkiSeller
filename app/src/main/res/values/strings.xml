@@ -63,6 +63,9 @@
     <string name="action_cancel">Cancel</string>
     <string name="product_place_order">Place order</string>
 
+    <string name="product_error_delete">Action dismissed</string>
+    <string name="product_msg_error_delete">You cannot delete this product because it is contained in an order</string>
+
     <!-- Strings related to orders -->
     <string name="order_id">Order #ID</string>
     <string name="order_date">Order date</string>

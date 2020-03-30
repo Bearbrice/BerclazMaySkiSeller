@@ -1,6 +1,8 @@
 package com.example.berclazmayskiseller.ui.orders;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,7 +49,7 @@ public class DisplayOrdersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_orders_display, container, false);
 
         // 1. get a reference to recyclerView
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.ordersRecyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.ordersRecyclerView);
         // 2. set layoutManger
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -72,8 +74,11 @@ public class DisplayOrdersFragment extends Fragment {
             }
         });
 
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+        String user = sharedPref.getString("emailSaved", "NotFound");
 
-        OrderListViewModel.Factory factory = new OrderListViewModel.Factory(getActivity().getApplication());
+
+        OrderListViewModel.Factory factory = new OrderListViewModel.Factory(getActivity().getApplication(), user);
         viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
         viewModel.getOrders().observe(this, orderEntities -> {
             if (orderEntities != null) {
@@ -81,6 +86,16 @@ public class DisplayOrdersFragment extends Fragment {
                 recyclerAdapter.setData(orders);
             }
         });
+
+
+//        OrderListViewModel.Factory factory = new OrderListViewModel.Factory(getActivity().getApplication());
+//        viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
+//        viewModel.getOrders().observe(this, orderEntities -> {
+//            if (orderEntities != null) {
+//                orders = orderEntities;
+//                recyclerAdapter.setData(orders);
+//            }
+//        });
 
         recyclerView.setAdapter(recyclerAdapter);
 
