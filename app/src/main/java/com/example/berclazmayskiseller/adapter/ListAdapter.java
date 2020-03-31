@@ -25,6 +25,7 @@ public class ListAdapter<T> extends ArrayAdapter<T> {
         super(context, resource, data);
         mResource = resource;
         mData = data;
+
     }
 
     @NonNull
