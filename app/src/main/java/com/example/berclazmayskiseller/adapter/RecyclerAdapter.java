@@ -57,7 +57,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         if (item.getClass().equals(ProductEntity.class))
             holder.mTextView.setText(((ProductEntity) item).getProductName());
         if (item.getClass().equals(OrderEntity.class))
-            holder.mTextView.setText(((OrderEntity) item).getIdOrder() + " - Product ID : " + ((OrderEntity) item).getProduct_id());
+            holder.mTextView.setText("Order #"+((OrderEntity) item).getIdOrder() + " - Product ID : #" + ((OrderEntity) item).getProduct_id());
     }
 
     @Override
