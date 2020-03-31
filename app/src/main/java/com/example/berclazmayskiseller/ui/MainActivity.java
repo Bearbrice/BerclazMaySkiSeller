@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         //DAY NIGHT MODE
         //Get shared preferences for daynight mode
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("darkMode", Context.MODE_PRIVATE);
         //Get the boolean saved
-        boolean darkMode_switchSaverIsChecked = sharedPref.getBoolean(String.valueOf(R.bool.darkMode_checked), false);
+        boolean darkMode_switchSaverIsChecked = sharedPref.getBoolean("darkMode", false);
         //Test to choose the color when booting
         if (darkMode_switchSaverIsChecked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

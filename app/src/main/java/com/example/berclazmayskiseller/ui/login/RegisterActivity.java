@@ -37,6 +37,15 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         initializeForm();
         toast = Toast.makeText(this, getString(R.string.client_created), Toast.LENGTH_LONG);
+
+        //Get and set night mode
+        SharedPreferences sharedPreferences = getSharedPreferences("darkMode", Context.MODE_PRIVATE);
+        boolean isDarkMode = sharedPreferences.getBoolean("darkMode", false);
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     private void initializeForm() {

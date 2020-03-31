@@ -60,16 +60,18 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         //DARK MODE SWITCH----------------------------------------
         Switch darkMode = view.findViewById(R.id.switch_darkMode);
         //Set switch state
-        SharedPreferences sharedPref2 = getActivity().getPreferences(Context.MODE_PRIVATE);
-        boolean darkMode_defaultValue = getResources().getBoolean(R.bool.darkMode_default_value);
-        boolean darkMode_switchSaverIsChecked = sharedPref2.getBoolean(String.valueOf(R.bool.darkMode_checked), darkMode_defaultValue);
+        SharedPreferences sharedPref2 = getActivity().getSharedPreferences("darkMode", Context.MODE_PRIVATE);
+//        boolean darkMode_defaultValue = getResources().getBoolean(R.bool.darkMode_default_value);
+        boolean darkMode_switchSaverIsChecked = sharedPref2.getBoolean("darkMode", false);
         darkMode.setChecked(darkMode_switchSaverIsChecked);
         //Set switch listener
         darkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 //Save switch state
-                SharedPreferences.Editor editor = sharedPref2.edit();
-                editor.putBoolean(String.valueOf(R.bool.darkMode_checked), isChecked);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("darkMode", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("darkMode", isChecked);
                 editor.commit();
 
                 if (isChecked) {

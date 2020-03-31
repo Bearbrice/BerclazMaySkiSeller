@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.ui.MainActivity;
@@ -59,6 +60,14 @@ public class LoginActivity extends AppCompatActivity {
                 new Intent(LoginActivity.this, RegisterActivity.class))
         );
 
+        //Get and set night mode
+        SharedPreferences sharedPreferences = getSharedPreferences("darkMode", Context.MODE_PRIVATE);
+        boolean isDarkMode = sharedPreferences.getBoolean("darkMode", false);
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
 //        Button demoDataButton = findViewById(R.id.demo_data_button);
 //        demoDataButton.setOnClickListener(view -> reinitializeDatabase());
