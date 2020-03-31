@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="414dp"
             android:layout_height="602dp"
-            android:background="@drawable/bg1"
+            android:background="@drawable/home_background"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
