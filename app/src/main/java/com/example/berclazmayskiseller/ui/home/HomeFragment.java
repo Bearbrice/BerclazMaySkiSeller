@@ -25,11 +25,6 @@ public class HomeFragment extends Fragment {
         Button button_us = view.findViewById(R.id.button_us);
         Button button_brice = view.findViewById(R.id.button_brice);
 
-        //Set the buttons colors
-//        button_aurelien.setBackgroundColor(65535);
-//        button_us.setBackgroundColor(Color.WHITE);
-//        button_brice.setBackgroundColor(Color.WHITE);
-
         //Set the button and fragment opened once connected
         button_us.setEnabled(false);
         addFragment(new UsFragment(), getActivity(), R.id.container_creators, false, "one");

@@ -7,43 +7,76 @@
     tools:context=".ui.settings.SettingsFragment">
 
     <LinearLayout
-        android:layout_width="397dp"
-        android:layout_height="341dp"
+        android:layout_width="392dp"
+        android:layout_height="343dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/text_general_info"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/colorPrimary"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical"
-            android:text="General"
-            android:textColor="@color/font_button"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="142dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_settings_black_24dp"
+                android:tint="@color/font_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_general_info"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:text="General"
+                android:textColor="@color/font_button"
+                android:textSize="20sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="47dp"
             android:gravity="center_vertical"
-            android:text="TextView"
+            android:text="My account ?"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/text_display_info"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/colorPrimary"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical"
-            android:text="Display"
-            android:textColor="@color/font_button"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="142dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_display"
+                android:tint="@color/font_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_display_info"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:text="Display"
+                android:textColor="@color/font_button"
+                android:textSize="20sp" />
+        </LinearLayout>
+
 
         <Switch
             android:id="@+id/switch_darkMode"
@@ -54,16 +87,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_about_info"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/colorPrimary"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical"
-            android:text="About"
-            android:textColor="@color/font_button"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="142dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_information"
+                android:tint="@color/font_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/text_about_info"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:text="About"
+                android:textColor="@color/font_button"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/textView3"
