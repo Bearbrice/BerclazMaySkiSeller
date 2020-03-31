@@ -1,5 +1,6 @@
 package com.example.berclazmayskiseller.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.ui.orders.DisplayOrdersFragment;
 
 import static com.example.berclazmayskiseller.ui.AddFragment.addFragment;
 
@@ -20,14 +20,21 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //Set the buttons
         Button button_aurelien = view.findViewById(R.id.button_aurelien);
         Button button_us = view.findViewById(R.id.button_us);
         Button button_brice = view.findViewById(R.id.button_brice);
 
-        //default fragment
+        //Set the buttons colors
+//        button_aurelien.setBackgroundColor(65535);
+//        button_us.setBackgroundColor(Color.WHITE);
+//        button_brice.setBackgroundColor(Color.WHITE);
+
+        //Set the button and fragment opened once connected
         button_us.setEnabled(false);
         addFragment(new UsFragment(), getActivity(), R.id.container_creators, false, "one");
 
+        //Button listeners
         button_aurelien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +45,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //Button listener
         button_us.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +56,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //Button listener
         button_brice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Intent(LoginActivity.this, RegisterActivity.class))
         );
 
+
 //        Button demoDataButton = findViewById(R.id.demo_data_button);
 //        demoDataButton.setOnClickListener(view -> reinitializeDatabase());
     }

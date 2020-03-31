@@ -6,82 +6,107 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="325dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="291dp"
-            android:background="@drawable/blue_background"
-            android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="414dp"
+            android:layout_height="602dp"
+            android:background="@drawable/bg1"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="80dp"
                 android:text="@string/name_brice"
-                android:textColor="#fff"
-                android:textSize="21sp"
-                android:textStyle="bold" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="199dp"
-                android:layout_height="216dp"
+                android:id="@+id/imageView"
+                android:layout_width="264dp"
+                android:layout_height="313dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/brice" />
-
-        </LinearLayout>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp">
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="120dp"
+                android:src="@drawable/brice"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/ic_mail" />
+                android:layout_marginStart="108dp"
+                android:layout_marginBottom="142dp"
+                android:src="@drawable/ic_mail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginEnd="92dp"
+                android:layout_marginBottom="149dp"
+                android:autoLink="email"
                 android:paddingLeft="20dp"
                 android:text="@string/mail_brice"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="25dp">
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="38dp"
-                android:src="@drawable/ic_github_blue" />
+                android:layout_marginStart="108dp"
+                android:layout_marginBottom="95dp"
+                android:src="@drawable/ic_github_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginStart="144dp"
+                android:layout_marginBottom="104dp"
                 android:paddingLeft="20dp"
                 android:text="@string/github_brice"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="108dp"
+                android:layout_marginBottom="48dp"
+                android:src="@drawable/ic_student"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="144dp"
+                android:layout_marginBottom="56dp"
+                android:paddingLeft="20dp"
+                android:text="@string/text_student"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
