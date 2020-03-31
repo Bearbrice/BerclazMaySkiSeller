@@ -1,9 +1,11 @@
 package com.example.berclazmayskiseller.adapter;
 
 import android.content.Context;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,6 @@ import android.widget.TextView;
 import com.example.berclazmayskiseller.R;
 
 import java.util.List;
-
 
 public class ListAdapter<T> extends ArrayAdapter<T> {
 
@@ -33,7 +34,7 @@ public class ListAdapter<T> extends ArrayAdapter<T> {
     }
 
     @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent){
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
         return getCustomView(position, convertView, parent);
     }
 

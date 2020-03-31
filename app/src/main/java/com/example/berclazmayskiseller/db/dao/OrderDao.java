@@ -6,17 +6,12 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 
 import java.util.List;
 
-
-/**
- * https://developer.android.com/topic/libraries/architecture/room.html#no-object-references
- */
 @Dao
 public interface OrderDao {
 

@@ -54,14 +54,10 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
         T item = mData.get(position);
-//        if (item.getClass().equals(AccountEntity.class))
-//            holder.mTextView.setText(((AccountEntity) item).getName());
-//        if (item.getClass().equals(ClientEntity.class))
-//            holder.mTextView.setText(((ClientEntity) item).getFirstName() + " " + ((ClientEntity) item).getLastName());
         if (item.getClass().equals(ProductEntity.class))
             holder.mTextView.setText(((ProductEntity) item).getProductName());
         if (item.getClass().equals(OrderEntity.class))
-            holder.mTextView.setText(((OrderEntity) item).getIdOrder() + " - Product ID : " +((OrderEntity) item).getProduct_id());
+            holder.mTextView.setText(((OrderEntity) item).getIdOrder() + " - Product ID : " + ((OrderEntity) item).getProduct_id());
     }
 
     @Override
@@ -91,15 +87,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-//                    if (mData instanceof AccountEntity) {
-//                        return ((AccountEntity) mData.get(oldItemPosition)).getId().equals(((AccountEntity) data.get(newItemPosition)).getId());
-//                    }
-//                    if (mData instanceof ClientEntity) {
-//                        return ((ClientEntity) mData.get(oldItemPosition)).getEmail().equals(
-//                                ((ClientEntity) data.get(newItemPosition)).getEmail());
-//                    }
                     if (mData instanceof ProductEntity) {
-                       return ((ProductEntity) mData.get(oldItemPosition)).getProductName().equals(((ProductEntity) data.get(newItemPosition)).getProductName());
+                        return ((ProductEntity) mData.get(oldItemPosition)).getProductName().equals(((ProductEntity) data.get(newItemPosition)).getProductName());
                     }
                     /* NOT IMPLEMENTED FOR ORDERS */
                     return false;
@@ -107,22 +96,6 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-//                    if (mData instanceof AccountEntity) {
-//                        AccountEntity newAccount = (AccountEntity) data.get(newItemPosition);
-//                        AccountEntity oldAccount = (AccountEntity) mData.get(newItemPosition);
-//                        return newAccount.getId().equals(oldAccount.getId())
-//                                && Objects.equals(newAccount.getName(), oldAccount.getName())
-//                                && Objects.equals(newAccount.getBalance(), oldAccount.getBalance())
-//                                && newAccount.getOwner().equals(oldAccount.getOwner());
-//                    }
-//                    if (mData instanceof ClientEntity) {
-//                        ClientEntity newClient = (ClientEntity) data.get(newItemPosition);
-//                        ClientEntity oldClient = (ClientEntity) mData.get(newItemPosition);
-//                        return Objects.equals(newClient.getEmail(), oldClient.getEmail())
-//                                && Objects.equals(newClient.getFirstName(), oldClient.getFirstName())
-//                                && Objects.equals(newClient.getLastName(), oldClient.getLastName())
-//                                && newClient.getPassword().equals(oldClient.getPassword());
-//                    }
                     if (mData instanceof ProductEntity) {
                         ProductEntity newProduct = (ProductEntity) data.get(newItemPosition);
                         ProductEntity oldProduct = (ProductEntity) mData.get(newItemPosition);

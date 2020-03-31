@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,16 +74,6 @@ public class DetailsOrderFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -144,12 +133,6 @@ public class DetailsOrderFragment extends Fragment {
             updateContent();
         });
 
-//        productRepository = ProductRepository.getInstance();
-//        LiveData<ProductEntity> product = productRepository.getProductById(order.getProduct_id(), getContext());
-//        product.
-//        updateTV(txt);
-
-
         ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProduct_id());
         productIdViewModel = ViewModelProviders.of(this, factory2).get(ProductIdViewModel.class);
         productIdViewModel.getProduct().observe(this, productEntity -> {
@@ -157,24 +140,7 @@ public class DetailsOrderFragment extends Fragment {
                 product = productEntity;
                 updateTV(product.getProductName());
             }
-            //updateTV("Product not found");
         });
-
-
-//        viewModel.getOrder().observe(this, orderEntity -> {
-//            if (orderEntity != null) {
-//                order = orderEntity;
-//                updateContent();
-//            }
-//            updateContent();
-//        });
-
-
-        //switchEditableMode();
-
-
-//        /*Tell the main activity to have settings*/
-//        setHasOptionsMenu(true);
 
         return view;
     }
@@ -199,102 +165,6 @@ public class DetailsOrderFragment extends Fragment {
         etProductInfo.setFocusable(false);
         etProductInfo.setEnabled(false);
     }
-
-//    private void switchEditableMode() {
-//        if (!isEditable) {
-//            etIdOrder.setFocusable(true);
-//            etIdOrder.setEnabled(true);
-//            etIdOrder.setFocusableInTouchMode(true);
-//
-//            etOrderDate.setFocusable(true);
-//            etOrderDate.setEnabled(true);
-//            etOrderDate.setFocusableInTouchMode(true);
-//
-//            etClientEmail.setFocusable(true);
-//            etClientEmail.setEnabled(true);
-//            etClientEmail.setFocusableInTouchMode(true);
-//            etIdOrder.requestFocus();
-//        } else {
-//            saveChanges(
-//                    etIdOrder.getText().toString(),
-//                    etOrderDate.getText().toString(),
-//                    Double.parseDouble(etClientEmail.getText().toString())
-//            );
-//            etIdOrder.setFocusable(false);
-//            etIdOrder.setEnabled(false);
-//            etOrderDate.setFocusable(false);
-//            etOrderDate.setEnabled(false);
-//            etClientEmail.setFocusable(false);
-//            etClientEmail.setEnabled(false);
-//        }
-//        isEditable = !isEditable;
-//    }
-
-//    private void createOrder(String idOrder, String orderDate, double clientEmail) {
-////        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(clientEmail).matches()) {
-////            etClientEmail.setError(getString(R.string.error_invalid_clientEmail));
-////            etClientEmail.requestFocus();
-////            return;
-////        }
-//
-//        order = new OrderEntity();
-//        order.set
-//
-//
-//        order.setClientEmail(clientEmail);
-//        order.setIdOrder(idOrder);
-//        order.setOrderDate(orderDate);
-//
-//        viewModel.createOrder(order, new OnAsyncEventListener() {
-//            @Override
-//            public void onSuccess() {
-//                Log.d(TAG, "createOrder: success");
-//                getActivity().onBackPressed();
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                Log.d(TAG, "createOrder: failure", e);
-//            }
-//        });
-//    }
-//
-//    private void saveChanges(String idOrder, String orderDate, double clientEmail) {
-////        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(clientEmail).matches()) {
-////            etClientEmail.setError(getString(R.string.error_invalid_clientEmail));
-////            etClientEmail.requestFocus();
-////            return;
-////        }
-//
-//        order.setClientEmail(clientEmail);
-//        order.setIdOrder(idOrder);
-//        order.setOrderDate(orderDate);
-//
-//        viewModel.updateOrder(order, new OnAsyncEventListener() {
-//            @Override
-//            public void onSuccess() {
-//                Log.d(TAG, "updateOrder: success");
-//                setResponse(true);
-//                getActivity().onBackPressed();
-//            }
-//
-//            @Override
-//            public void onFailure(Exception e) {
-//                Log.d(TAG, "updateOrder: failure", e);
-//                setResponse(false);
-//            }
-//        });
-//    }
-
-//    private void setResponse(Boolean response) {
-//        if (response) {
-//            statusToast = Toast.makeText(getActivity(), getString(R.string.order_edited), Toast.LENGTH_LONG);
-//            statusToast.show();
-//        } else {
-//            statusToast = Toast.makeText(getActivity(), getString(R.string.action_error), Toast.LENGTH_LONG);
-//            statusToast.show();
-//        }
-//    }
 
     private void updateTV(String txt) {
         etProductInfo.setText(txt);

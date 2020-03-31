@@ -4,26 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.ui.MainActivity;
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.AppDatabase;
 import com.example.berclazmayskiseller.db.repository.ClientRepository;
-
-import static com.example.berclazmayskiseller.db.AppDatabase.initializeDemoData;
 
 
 /**
@@ -68,9 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
-//        Button demoDataButton = findViewById(R.id.demo_data_button);
-//        demoDataButton.setOnClickListener(view -> reinitializeDatabase());
     }
 
     @Override
@@ -171,17 +162,5 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() > 4;
     }
 
-//    private void reinitializeDatabase() {
-//        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-//        alertDialog.setTitle(getString(R.string.action_demo_data));
-//        alertDialog.setCancelable(false);
-//        alertDialog.setMessage(getString(R.string.reset_msg));
-//        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_reset), (dialog, which) ->{
-//            initializeDemoData(AppDatabase.getInstance(this));
-//            Toast.makeText(this, getString(R.string.demo_data_initiated), Toast.LENGTH_LONG).show();
-//        });
-//        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
-//        alertDialog.show();
-//    }
 }
 

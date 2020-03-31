@@ -61,15 +61,6 @@ public class DisplayProductsFragment extends Fragment {
                 Log.d(TAG, "clicked on: " + products.get(position).toString());
 
                 addFragment(new DetailsProductFragment(products.get(position)), getActivity(), R.id.container_products, false, "one");
-
-
-//                Intent intent = new Intent(MainActivity.this, ClientDetails.class);
-//                intent.setFlags(
-//                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
-//                                Intent.FLAG_ACTIVITY_NO_HISTORY
-//                );
-//                intent.putExtra("clientEmail", products.get(position).getEmail());
-//                startActivity(intent);
             }
 
             @Override
@@ -105,16 +96,6 @@ public class DisplayProductsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-////
-////        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 }

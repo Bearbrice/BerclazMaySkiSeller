@@ -11,10 +11,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.berclazmayskiseller.db.converter.Converters;
 import com.example.berclazmayskiseller.db.dao.ClientDao;
 import com.example.berclazmayskiseller.db.dao.OrderDao;
 import com.example.berclazmayskiseller.db.dao.ProductDao;
@@ -22,9 +20,7 @@ import com.example.berclazmayskiseller.db.entity.ClientEntity;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 
-//@Database(entities = {BrandEntity.class, ClientEntity.class, OrderEntity.class, ProductEntity.class}, version = 1)
 @Database(entities = {ClientEntity.class, ProductEntity.class, OrderEntity.class}, version = 1)
-@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
@@ -34,7 +30,9 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "intro-database";
 
     public abstract ClientDao clientDao();
+
     public abstract ProductDao productDao();
+
     public abstract OrderDao orderDao();
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();

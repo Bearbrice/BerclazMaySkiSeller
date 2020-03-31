@@ -17,8 +17,6 @@ public class AurelienFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_aurelien, container, false);
-//        Button button_aurelien = getView().findViewById(R.id.button_aurelien);
-//        button_aurelien.setEnabled(false);
         return view;
     }
 }

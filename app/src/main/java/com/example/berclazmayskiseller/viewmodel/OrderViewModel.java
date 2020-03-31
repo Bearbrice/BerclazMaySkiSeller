@@ -24,7 +24,7 @@ public class OrderViewModel extends AndroidViewModel {
     private final MediatorLiveData<OrderEntity> observableOrder;
 
     public OrderViewModel(@NonNull Application application,
-                            final String email, OrderRepository orderRepository) {
+                          final String email, OrderRepository orderRepository) {
         super(application);
 
         repository = orderRepository;

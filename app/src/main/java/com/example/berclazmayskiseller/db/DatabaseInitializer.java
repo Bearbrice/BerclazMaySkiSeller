@@ -37,10 +37,10 @@ public class DatabaseInitializer {
 
         db.orderDao().deleteAll();
 
-        addOrder(db, "TODAY", "test@gmail.com" , 1);
-        addOrder(db, "TODAY", "test@gmail.com" , 2);
-        addOrder(db, "TODAY", "test@gmail.com" , 3);
-        addOrder(db, "TODAY", "test@gmail.com" , 4);
+        addOrder(db, "TODAY", "test@gmail.com", 1);
+        addOrder(db, "TODAY", "test@gmail.com", 2);
+        addOrder(db, "TODAY", "test@gmail.com", 3);
+        addOrder(db, "TODAY", "test@gmail.com", 4);
 
     }
 

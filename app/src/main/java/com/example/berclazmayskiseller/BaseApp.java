@@ -20,23 +20,8 @@ public class BaseApp extends Application {
         return AppDatabase.getInstance(this);
     }
 
-//    public AccountRepository getAccountRepository() {
-//        return AccountRepository.getInstance();
-//    }
-
     public ClientRepository getClientRepository() {
         return ClientRepository.getInstance();
     }
 
-//    public OrderRepository getOrderRepository() {
-//        return OrderRepository.getInstance();
-//    }
-//
-//    public BrandRepository getBrandRepository() {
-//        return BrandRepository.getInstance();
-//    }
-//
-//    public ProductRepository getProductRepository() {
-//        return ProductRepository.getInstance();
-//    }
 }

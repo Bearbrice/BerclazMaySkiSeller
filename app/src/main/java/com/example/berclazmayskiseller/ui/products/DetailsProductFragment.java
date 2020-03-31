@@ -79,16 +79,6 @@ public class DetailsProductFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,11 +100,7 @@ public class DetailsProductFragment extends Fragment {
         button_add = view.findViewById(R.id.button_add);
         button_edit = view.findViewById(R.id.button_edit);
         button_delete = view.findViewById(R.id.button_delete);
-        //button_edit_save = view.findViewById(R.id.button_edit_save);
         button_place_order = view.findViewById(R.id.button_place_order);
-
-        /* Hidden by default*/
-        //button_edit_save.setVisibility(View.GONE);
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,13 +160,6 @@ public class DetailsProductFragment extends Fragment {
             }
         });
 
-//        button_edit_save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                isEditable = !isEditable;
-//            }
-//        });
-
         button_place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,34 +170,6 @@ public class DetailsProductFragment extends Fragment {
 
             }
         });
-
-//            @Override
-//            public void onItemLongClick(View v, int position) {
-//                Log.d(TAG, "longClicked position:" + position);
-//                Log.d(TAG, "longClicked on: " + products.get(position).toString());
-//            }
-
-
-//        FloatingActionButton fab = getActivity().findViewById(R.id.floatingActionButton);
-//        fab.setOnClickListener(view -> {
-//                    Intent intent = new Intent(MainActivity.this, ClientDetails.class);
-//                    intent.setFlags(
-//                            Intent.FLAG_ACTIVITY_NO_ANIMATION |
-//                                    Intent.FLAG_ACTIVITY_NO_HISTORY
-//                    );
-//                    startActivity(intent);
-//                }
-//        );
-
-
-//    ProductListViewModel.Factory factory = new ProductListViewModel.Factory(getActivity().getApplication());
-//    viewModel = ViewModelProviders.of(this, factory).get(ProductListViewModel.class);
-//        viewModel.getProducts().observe(this, clientEntities -> {
-//        if (clientEntities != null) {
-//            products = clientEntities;
-//            recyclerAdapter.setData(products);
-//        }
-//    });
 
         String productName = getActivity().getIntent().getStringExtra("productName");
 
@@ -232,10 +183,6 @@ public class DetailsProductFragment extends Fragment {
             updateContent();
         });
 
-        //System.out.println(productName);
-
-        //!= null
-        //if (product.getProductName() != null) {
         if (product != null) {
             getActivity().setTitle(R.string.title_fragment_details);
             changeButtonVisibility(false);
@@ -244,10 +191,6 @@ public class DetailsProductFragment extends Fragment {
             switchEditableMode();
             changeButtonVisibility(true);
         }
-
-
-//        /*Tell the main activity to have settings*/
-//        setHasOptionsMenu(true);
 
         return view;
     }
@@ -258,29 +201,21 @@ public class DetailsProductFragment extends Fragment {
             button_edit.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
             button_place_order.setVisibility(View.GONE);
-
-
         } else {
             button_add.setVisibility(View.GONE);
             button_edit.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
             button_place_order.setVisibility(View.VISIBLE);
-
-
         }
     }
 
     private void changeButtonEditableMode(boolean visibility) {
         if (visibility) {
-            //button_add.setVisibility(View.GONE);
             button_edit.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
-//            button_edit_save.setVisibility(View.VISIBLE);
         } else {
-            //button_add.setVisibility(View.VISIBLE);
             button_edit.setVisibility(View.VISIBLE);
             button_delete.setVisibility(View.VISIBLE);
-//            button_edit_save.setVisibility(View.GONE);
         }
     }
 
@@ -330,12 +265,6 @@ public class DetailsProductFragment extends Fragment {
     }
 
     private void createProduct(String productName, String color, double price) {
-//        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(price).matches()) {
-//            etPrice.setError(getString(R.string.error_invalid_price));
-//            etPrice.requestFocus();
-//            return;
-//        }
-
         product = new ProductEntity();
         product.setPrice(price);
         product.setProductName(productName);
@@ -345,7 +274,6 @@ public class DetailsProductFragment extends Fragment {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "createProduct: success");
-//                getActivity().onBackPressed();
                 addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
 
@@ -357,17 +285,10 @@ public class DetailsProductFragment extends Fragment {
     }
 
     private void createOrder() {
-//        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(price).matches()) {
-//            etPrice.setError(getString(R.string.error_invalid_price));
-//            etPrice.requestFocus();
-//            return;
-//        }
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String dateOrder = formatter.format(date);
 
-        //String email = getString(R.string.user_connected);
-        //String email = "test@gmail.com";
         SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
         String email = sharedPref.getString("emailSaved", "NotFound");
 
@@ -385,7 +306,6 @@ public class DetailsProductFragment extends Fragment {
                 Log.d(TAG, "createOrder: success");
                 statusToast = Toast.makeText(getActivity(), getString(R.string.order_created), Toast.LENGTH_LONG);
                 statusToast.show();
-//                getActivity().onBackPressed();
                 addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
 
@@ -398,12 +318,6 @@ public class DetailsProductFragment extends Fragment {
     }
 
     private void saveChanges(String productName, String color, double price) {
-//        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(price).matches()) {
-//            etPrice.setError(getString(R.string.error_invalid_price));
-//            etPrice.requestFocus();
-//            return;
-//        }
-
         product.setPrice(price);
         product.setProductName(productName);
         product.setColor(color);
@@ -413,7 +327,6 @@ public class DetailsProductFragment extends Fragment {
             public void onSuccess() {
                 Log.d(TAG, "updateProduct: success");
                 setResponse(true);
-//                getActivity().onBackPressed();
                 addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
             }
 

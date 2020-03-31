@@ -15,8 +15,6 @@ public class BriceFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_brice, container, false);
-//        Button button_brice = view.findViewById(R.id.button_brice);
-//        button_brice.setEnabled(false);
         return view;
     }
 }

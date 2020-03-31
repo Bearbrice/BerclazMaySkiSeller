@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 /**
  * https://developer.android.com/reference/android/arch/persistence/room/Entity.html
- *
+ * <p>
  * Further information to Parcelable:
  * https://developer.android.com/reference/android/os/Parcelable
  * Why we use Parcelable over Serializable:

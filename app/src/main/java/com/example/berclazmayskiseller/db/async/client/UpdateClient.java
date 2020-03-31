@@ -11,12 +11,12 @@ import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
 public class UpdateClient extends AsyncTask<ClientEntity, Void, Void> {
 
     private Application application;
-    private OnAsyncEventListener calback;
+    private OnAsyncEventListener callback;
     private Exception exception;
 
     public UpdateClient(Application application, OnAsyncEventListener callback) {
         this.application = application;
-        calback = callback;
+        this.callback = callback;
     }
 
     @Override
@@ -33,11 +33,11 @@ public class UpdateClient extends AsyncTask<ClientEntity, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        if (calback != null) {
+        if (callback != null) {
             if (exception == null) {
-                calback.onSuccess();
+                callback.onSuccess();
             } else {
-                calback.onFailure(exception);
+                callback.onFailure(exception);
             }
         }
     }

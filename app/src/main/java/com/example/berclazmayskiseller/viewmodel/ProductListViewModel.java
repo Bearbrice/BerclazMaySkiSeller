@@ -15,7 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.repository.ProductRepository;
 
-/** Class to display the list of products */
+/**
+ * Class to display the list of products
+ */
 public class ProductListViewModel extends AndroidViewModel {
 
     private ProductRepository repository;

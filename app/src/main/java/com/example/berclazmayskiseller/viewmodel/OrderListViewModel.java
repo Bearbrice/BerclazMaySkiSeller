@@ -15,7 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.repository.OrderRepository;
 
-/** Class to display the list of orders */
+/**
+ * Class to display the list of orders
+ */
 public class OrderListViewModel extends AndroidViewModel {
 
     private OrderRepository repository;
@@ -57,7 +59,7 @@ public class OrderListViewModel extends AndroidViewModel {
         public Factory(@NonNull Application application, String email) {
             this.application = application;
             orderRepository = OrderRepository.getInstance();
-            this.email=email;
+            this.email = email;
         }
 
         @Override

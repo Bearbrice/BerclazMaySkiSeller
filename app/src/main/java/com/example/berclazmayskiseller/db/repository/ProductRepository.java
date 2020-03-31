@@ -17,7 +17,8 @@ public class ProductRepository {
 
     private static ProductRepository instance;
 
-    private ProductRepository() {}
+    private ProductRepository() {
+    }
 
     public static ProductRepository getInstance() {
         if (instance == null) {
