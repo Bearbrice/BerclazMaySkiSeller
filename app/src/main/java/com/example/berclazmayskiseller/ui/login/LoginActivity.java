@@ -19,6 +19,9 @@ import com.example.berclazmayskiseller.ui.MainActivity;
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.db.repository.ClientRepository;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * A login screen that offers login via email/password.
@@ -124,13 +127,17 @@ public class LoginActivity extends AppCompatActivity {
                         // All objects are from android.context.Context
 
                         /* Store the email connected */
-//                        SharedPreferences sharedpreferences = getSharedPreferences(Consts.SP_NAME, Context.MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = sharedpreferences.edit();
-//                        editor.putString(key, value);
-//                        editor.apply();
-
-                        SharedPreferences sharedPref = getSharedPreferences("email", Context.MODE_PRIVATE);
+                        SharedPreferences sharedPref = getSharedPreferences("time", Context.MODE_PRIVATE);
+                        Date date = new Date();
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        String connexion = formatter.format(date);
                         SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("timeSaved", connexion);
+                        editor.commit();
+
+                        /* Store the email connected */
+                        sharedPref = getSharedPreferences("email", Context.MODE_PRIVATE);
+                        editor = sharedPref.edit();
                         editor.putString("emailSaved", email);
                         editor.commit();
 

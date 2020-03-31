@@ -25,13 +25,20 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private String CHANNEL_ID = "test_notification  ";
 
     private TextView email;
+    private TextView time;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        //Get shared preferences for switches
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+        //Get shared preferences for the connexion time
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("time", Context.MODE_PRIVATE);
+        String timeConnexion = sharedPref.getString("timeSaved", "NotFound");
+        time = view.findViewById(R.id.tvTime);
+        time.setText("Connected since : "+timeConnexion);
+
+        //Get shared preferences for the email of the client connected
+        sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
         String user = sharedPref.getString("emailSaved", "NotFound");
         email = view.findViewById(R.id.textViewEmail);
         email.setText(user);

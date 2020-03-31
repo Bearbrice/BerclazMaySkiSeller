@@ -89,7 +89,7 @@ public class DisplayOrdersFragment extends Fragment {
                 orders = orderEntities;
                 //If there is no order a toast appeared to tell the user it has not found something
                 if(orders.isEmpty()){
-                    statusToast = Toast.makeText(getActivity(), getString(R.string.order_message_empty), Toast.LENGTH_LONG);
+                    statusToast = Toast.makeText(getActivity(), getString(R.string.order_message_empty), Toast.LENGTH_SHORT);
                     statusToast.setGravity(Gravity.CENTER, 0, 0);
                     statusToast.show();
                 }
