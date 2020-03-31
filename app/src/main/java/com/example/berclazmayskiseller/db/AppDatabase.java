@@ -30,9 +30,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "intro-database";
 
     public abstract ClientDao clientDao();
-
     public abstract ProductDao productDao();
-
     public abstract OrderDao orderDao();
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();

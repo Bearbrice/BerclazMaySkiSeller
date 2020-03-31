@@ -57,17 +57,14 @@ public class DetailsOrderFragment extends Fragment {
 
     private Button button_delete;
 
-    /* *****************************
-     * METHODS OF THE CLASS
-     * *************************** */
     private List<OrderEntity> orders = new ArrayList<>();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /* Constructor */
     public DetailsOrderFragment(OrderEntity orderEntity) {
         order = orderEntity;
     }
@@ -92,8 +89,10 @@ public class DetailsOrderFragment extends Fragment {
             }
         });
 
+        /* Initialize button */
         button_delete = view.findViewById(R.id.button_delete_order);
 
+        /* Give an action to the button */
         button_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +122,7 @@ public class DetailsOrderFragment extends Fragment {
 
         String idOrder = getActivity().getIntent().getStringExtra("idOrder");
 
+        /* Search in db for the order */
         OrderViewModel.Factory factory = new OrderViewModel.Factory(getActivity().getApplication(), idOrder);
         viewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
         viewModel.getOrder().observe(this, orderEntity -> {
@@ -133,6 +133,7 @@ public class DetailsOrderFragment extends Fragment {
             updateContent();
         });
 
+        /* Search in db for the product */
         ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProduct_id());
         productIdViewModel = ViewModelProviders.of(this, factory2).get(ProductIdViewModel.class);
         productIdViewModel.getProduct().observe(this, productEntity -> {
@@ -145,7 +146,7 @@ public class DetailsOrderFragment extends Fragment {
         return view;
     }
 
-
+    /* Initialize element through view*/
     private void initiateView(View view) {
         isEditable = false;
         etIdOrder = view.findViewById(R.id.id_order);

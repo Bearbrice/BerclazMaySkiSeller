@@ -30,18 +30,12 @@ public class DatabaseInitializer {
         db.productDao().deleteAll();
 
         addProduct(db, "Rossignol Super 2020", 800, "Green");
-        addProduct(db, "Dynastar Ultra 2017", 300, "Blue");
+        addProduct(db, "Dynastar Ultra 2017", 300, "Royal Blue");
         addProduct(db, "Head Cool 2018", 500, "Yellow");
         addProduct(db, "Descente Nice 2019", 600, "Red");
         addProduct(db, "Salomon Free 2015", 200, "Grey");
-
-        db.orderDao().deleteAll();
-
-        addOrder(db, "TODAY", "test@gmail.com", 1);
-        addOrder(db, "TODAY", "test@gmail.com", 2);
-        addOrder(db, "TODAY", "test@gmail.com", 3);
-        addOrder(db, "TODAY", "test@gmail.com", 4);
-
+        addProduct(db, "Atomic Rapid 2016", 600, "Dark olive");
+        addProduct(db, "Stokli Slalom 2018", 200, "Deep blue");
     }
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {

@@ -70,7 +70,7 @@ public class DisplayProductsFragment extends Fragment {
             }
         });
 
-        /* Programming the add button */
+        /* Programming the floating button to add a new product */
         FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
                                    @Override
@@ -80,6 +80,7 @@ public class DisplayProductsFragment extends Fragment {
                                }
         );
 
+        /* Search for a product in the DB */
         ProductListViewModel.Factory factory = new ProductListViewModel.Factory(getActivity().getApplication());
         viewModel = ViewModelProviders.of(this, factory).get(ProductListViewModel.class);
         viewModel.getProducts().observe(this, clientEntities -> {

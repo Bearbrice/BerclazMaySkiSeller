@@ -75,6 +75,8 @@
     <string name="order_created">Order successfully created</string>
     <string name="order_product_info">Product information</string>
 
+    <string name="order_message_empty">No order found</string>
+
     <string name="order_title_order_info">Order information</string>
 
     <string name="order_title_product_info">Product information</string>

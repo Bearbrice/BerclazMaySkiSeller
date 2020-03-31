@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,6 +39,8 @@ public class DisplayOrdersFragment extends Fragment {
     private List<OrderEntity> orders;
     private RecyclerAdapter recyclerAdapter;
     private OrderListViewModel viewModel;
+
+    private Toast statusToast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,12 +81,18 @@ public class DisplayOrdersFragment extends Fragment {
         SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
         String user = sharedPref.getString("emailSaved", "NotFound");
 
-
+        /* Search in db for the orders */
         OrderListViewModel.Factory factory = new OrderListViewModel.Factory(getActivity().getApplication(), user);
         viewModel = ViewModelProviders.of(this, factory).get(OrderListViewModel.class);
         viewModel.getOrders().observe(this, orderEntities -> {
             if (orderEntities != null) {
                 orders = orderEntities;
+                //If there is no order a toast appeared to tell the user it has not found something
+                if(orders.isEmpty()){
+                    statusToast = Toast.makeText(getActivity(), getString(R.string.order_message_empty), Toast.LENGTH_LONG);
+                    statusToast.setGravity(Gravity.CENTER, 0, 0);
+                    statusToast.show();
+                }
                 recyclerAdapter.setData(orders);
             }
         });

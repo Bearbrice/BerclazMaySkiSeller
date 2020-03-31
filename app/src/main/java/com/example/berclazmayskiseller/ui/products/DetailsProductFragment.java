@@ -61,17 +61,14 @@ public class DetailsProductFragment extends Fragment {
     //private Button button_edit_save;
     private Button button_place_order;
 
-    /* *****************************
-     * METHODS OF THE CLASS
-     * *************************** */
     private List<ProductEntity> products = new ArrayList<>();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /* Constructor */
     public DetailsProductFragment(ProductEntity productEntity) {
         product = productEntity;
 
@@ -97,11 +94,13 @@ public class DetailsProductFragment extends Fragment {
             }
         });
 
+        /* Initialize buttons */
         button_add = view.findViewById(R.id.button_add);
         button_edit = view.findViewById(R.id.button_edit);
         button_delete = view.findViewById(R.id.button_delete);
         button_place_order = view.findViewById(R.id.button_place_order);
 
+        /* Give action to add button */
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +112,7 @@ public class DetailsProductFragment extends Fragment {
             }
         });
 
+        /* Give action to edit button */
         button_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +127,7 @@ public class DetailsProductFragment extends Fragment {
             }
         });
 
+        /* Give action to delete button */
         button_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,19 +161,17 @@ public class DetailsProductFragment extends Fragment {
             }
         });
 
+        /* Give action to place order button */
         button_place_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //OrderEntity newOrder = new OrderEntity();
-
                 createOrder();
-
-
             }
         });
 
         String productName = getActivity().getIntent().getStringExtra("productName");
 
+        /* Search for the product in DB */
         ProductViewModel.Factory factory = new ProductViewModel.Factory(getActivity().getApplication(), productName);
         viewModel = ViewModelProviders.of(this, factory).get(ProductViewModel.class);
         viewModel.getProduct().observe(this, productEntity -> {
@@ -195,6 +194,7 @@ public class DetailsProductFragment extends Fragment {
         return view;
     }
 
+    /* Hide/show buttons */
     private void changeButtonVisibility(boolean visibility) {
         if (visibility) {
             button_add.setVisibility(View.VISIBLE);
@@ -219,7 +219,7 @@ public class DetailsProductFragment extends Fragment {
         }
     }
 
-
+    /* Initialize elements through view */
     private void initiateView(View view) {
         isEditable = false;
         etProductName = view.findViewById(R.id.productName);
@@ -264,6 +264,7 @@ public class DetailsProductFragment extends Fragment {
         isEditable = !isEditable;
     }
 
+    /* Method to create a product */
     private void createProduct(String productName, String color, double price) {
         product = new ProductEntity();
         product.setPrice(price);
@@ -284,6 +285,7 @@ public class DetailsProductFragment extends Fragment {
         });
     }
 
+    /* Method to create an order from a product */
     private void createOrder() {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -317,6 +319,7 @@ public class DetailsProductFragment extends Fragment {
 
     }
 
+    /* Save modifications of a product */
     private void saveChanges(String productName, String color, double price) {
         product.setPrice(price);
         product.setProductName(productName);
