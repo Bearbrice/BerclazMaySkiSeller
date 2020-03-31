@@ -13,7 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="414dp"
             android:layout_height="602dp"
-            android:background="@drawable/home_background"
+            android:background="@drawable/creators_background"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -45,8 +45,8 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="108dp"
-                android:layout_marginBottom="142dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginBottom="140dp"
                 android:src="@drawable/ic_mail"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -55,8 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="92dp"
-                android:layout_marginBottom="149dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="148dp"
                 android:autoLink="email"
                 android:paddingLeft="20dp"
                 android:text="@string/mail_brice"
@@ -67,8 +67,8 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="38dp"
-                android:layout_marginStart="108dp"
-                android:layout_marginBottom="95dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginBottom="92dp"
                 android:src="@drawable/ic_github_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -77,8 +77,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="144dp"
-                android:layout_marginBottom="104dp"
+                android:layout_marginStart="108dp"
+                android:layout_marginBottom="100dp"
+                android:textColor="@color/colorPrimary"
                 android:paddingLeft="20dp"
                 android:text="@string/github_brice"
                 android:textStyle="bold"
@@ -88,8 +89,8 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="38dp"
-                android:layout_marginStart="108dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginBottom="44dp"
                 android:src="@drawable/ic_student"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -98,9 +99,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="144dp"
+                android:layout_marginStart="108dp"
                 android:layout_marginBottom="56dp"
                 android:paddingLeft="20dp"
+                android:textColor="@color/colorPrimary"
                 android:text="@string/text_student"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

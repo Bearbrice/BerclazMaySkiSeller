@@ -139,11 +139,12 @@
     <string name="name_aurelien">Aurélien May</string>
     <string name="mail_aurelien">aurelien.may@students.hevs.ch</string>
     <string name="github_aurelien">aurelienmay</string>
-    <string name="project_name">Ski Seller Project</string>
+    <string name="project_name">Ski Seller Project !</string>
     <string name="mail_brice">brice.berclaz@students.hevs.ch</string>
     <string name="github_brice">Bearbrice</string>
     <string name="name_brice">Brice Berclaz</string>
     <string name="settings_about_us">We are students in HES-SO Valais-Wallis and our task was to do an android application with the Ski Seller theme.</string>
     <string name="settings_version">©BerclazMay 2020 - Version 1.0</string>
     <string name="text_student">IT student</string>
+    <string name="welcome_message">Welcome on our</string>
 </resources>

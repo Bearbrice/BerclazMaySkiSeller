@@ -21,14 +21,6 @@ public class UsFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_us, container, false);
-
-        webView = (WebView) view.findViewById(R.id.webview);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://github.com/Bearbrice/BerclazMaySkiSeller/tree/master");
-
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-
         return view;
     }
 }
