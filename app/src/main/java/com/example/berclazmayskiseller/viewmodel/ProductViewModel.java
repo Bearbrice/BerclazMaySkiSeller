@@ -1,7 +1,6 @@
 package com.example.berclazmayskiseller.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -35,10 +34,13 @@ public class ProductViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableProduct.setValue(null);
 
-        LiveData<ProductEntity> product = repository.getProduct(productName);
+        if(productName!=null){
+            LiveData<ProductEntity> product = repository.getProduct(productName);
 
-        // observe the changes of the product entity from the database and forward them
-        observableProduct.addSource(product, observableProduct::setValue);
+            // observe the changes of the product entity from the database and forward them
+            observableProduct.addSource(product, observableProduct::setValue);
+        }
+
     }
 
     /**

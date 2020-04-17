@@ -12,33 +12,36 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.repository.OrderRepository;
+import com.example.berclazmayskiseller.BaseApp;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.repository.OrderRepository;
 
 /**
  * Class to display the list of orders
  */
 public class OrderListViewModel extends AndroidViewModel {
 
+    private static final String TAG = "OrderListViewModel";
+
     private OrderRepository repository;
 
-    private Context applicationContext;
+//    private Context applicationContext;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<OrderEntity>> observableOrders;
 
-    public OrderListViewModel(@NonNull Application application, OrderRepository orderRepository, String email) {
+    public OrderListViewModel(@NonNull Application application, OrderRepository orderRepository, String ownerId) {
         super(application);
 
         repository = orderRepository;
 
-        applicationContext = application.getApplicationContext();
+//        applicationContext = application.getApplicationContext();
 
         observableOrders = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableOrders.setValue(null);
 
-        LiveData<List<OrderEntity>> orders = repository.getByOwners(email, applicationContext);
+        LiveData<List<OrderEntity>> orders = repository.getByOwners(ownerId);
 
         // observe the changes of the entities from the database and forward them
         observableOrders.addSource(orders, observableOrders::setValue);
@@ -54,18 +57,19 @@ public class OrderListViewModel extends AndroidViewModel {
 
         private final OrderRepository orderRepository;
 
-        private final String email;
+        private final String ownerId;
 
-        public Factory(@NonNull Application application, String email) {
+        public Factory(@NonNull Application application, String ownerId) {
             this.application = application;
-            orderRepository = OrderRepository.getInstance();
-            this.email = email;
+//            orderRepository = OrderRepository.getInstance();
+            orderRepository = ((BaseApp) application).getOrderRepository();
+            this.ownerId = ownerId;
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new OrderListViewModel(application, orderRepository, email);
+            return (T) new OrderListViewModel(application, orderRepository, ownerId);
         }
     }
 

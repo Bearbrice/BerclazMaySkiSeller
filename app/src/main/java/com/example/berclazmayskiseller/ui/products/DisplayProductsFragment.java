@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
 import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -83,9 +83,9 @@ public class DisplayProductsFragment extends Fragment {
         /* Search for a product in the DB */
         ProductListViewModel.Factory factory = new ProductListViewModel.Factory(getActivity().getApplication());
         viewModel = ViewModelProviders.of(this, factory).get(ProductListViewModel.class);
-        viewModel.getProducts().observe(this, clientEntities -> {
-            if (clientEntities != null) {
-                products = clientEntities;
+        viewModel.getProducts().observe(this, productEntities -> {
+            if (productEntities != null) {
+                products = productEntities;
                 recyclerAdapter.setData(products);
             }
         });

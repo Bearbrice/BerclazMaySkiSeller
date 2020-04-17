@@ -18,6 +18,7 @@ import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.database.repository.ClientRepository;
 import com.example.berclazmayskiseller.ui.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -133,6 +134,12 @@ public class LoginActivity extends AppCompatActivity {
                     sharedPref = getSharedPreferences("email", Context.MODE_PRIVATE);
                     editor = sharedPref.edit();
                     editor.putString("emailSaved", email);
+                    editor.commit();
+
+                    /* Store the token connected */
+                    sharedPref = getSharedPreferences("token", Context.MODE_PRIVATE);
+                    editor = sharedPref.edit();
+                    editor.putString("tokenSaved", FirebaseAuth.getInstance().getCurrentUser().getUid());
                     editor.commit();
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

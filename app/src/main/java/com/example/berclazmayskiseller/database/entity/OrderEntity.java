@@ -11,13 +11,13 @@ public class OrderEntity {
     private String idOrder;
     private String orderDate;
     private String clientEmail;
-    private int product_id;
+    private String product_id;
 
     /* Constructors */
     public OrderEntity() {
     }
 
-    public OrderEntity(@NonNull String orderDate, String clientEmail, int product_id) {
+    public OrderEntity(@NonNull String orderDate, String clientEmail, String product_id) {
         this.orderDate = orderDate;
         this.clientEmail = clientEmail;
         this.product_id = product_id;
@@ -51,12 +51,12 @@ public class OrderEntity {
         this.clientEmail = clientEmail;
     }
 
-    @Exclude
-    public int getProduct_id() {
+//    @Exclude
+    public String getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProduct_id(String product_id) {
         this.product_id = product_id;
     }
 
@@ -70,7 +70,7 @@ public class OrderEntity {
         HashMap<String, Object> result = new HashMap<>();
         result.put("orderDate", orderDate);
         result.put("clientEmail", clientEmail);
-
+        result.put("product_id", product_id);
         return result;
     }
 }

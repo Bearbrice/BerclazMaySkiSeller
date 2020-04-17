@@ -18,6 +18,7 @@ import com.example.berclazmayskiseller.database.entity.ClientEntity;
 import com.example.berclazmayskiseller.database.repository.ClientRepository;
 import com.example.berclazmayskiseller.ui.MainActivity;
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -95,6 +96,12 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences sharedPref = getSharedPreferences("email", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("emailSaved", email);
+                editor.commit();
+
+                /* Store the token connected */
+                sharedPref = getSharedPreferences("token", Context.MODE_PRIVATE);
+                editor = sharedPref.edit();
+                editor.putString("tokenSaved", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 editor.commit();
             }
 

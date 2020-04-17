@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.annotation.NonNull;
 import android.util.Log;
 
-import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,19 +13,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListLiveData extends LiveData<List<ProductEntity>> {
+public class OrderListLiveData extends LiveData<List<OrderEntity>> {
 
-    private static final String TAG = "ProductListLiveData";
+    private static final String TAG = "OrderListLiveData";
 
     private final DatabaseReference reference;
-//    private final String owner;
-//    private final String productName;
+    private final String owner;
     private final MyValueEventListener listener = new MyValueEventListener();
 
-    public ProductListLiveData(DatabaseReference ref) {
+    public OrderListLiveData(DatabaseReference ref, String owner) {
         reference = ref;
-//        this.owner = owner;
-//        this.productName = productName;
+        this.owner = owner;
     }
 
     @Override
@@ -42,7 +40,7 @@ public class ProductListLiveData extends LiveData<List<ProductEntity>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            setValue(toProductList(dataSnapshot));
+            setValue(toOrders(dataSnapshot));
         }
 
         @Override
@@ -51,14 +49,14 @@ public class ProductListLiveData extends LiveData<List<ProductEntity>> {
         }
     }
 
-    private List<ProductEntity> toProductList(DataSnapshot snapshot) {
-        List<ProductEntity> products = new ArrayList<>();
+    private List<OrderEntity> toOrders(DataSnapshot snapshot) {
+        List<OrderEntity> orders = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            ProductEntity entity = childSnapshot.getValue(ProductEntity.class);
-            entity.setIdProduct(childSnapshot.getKey());
-            products.add(entity);
+            OrderEntity entity = childSnapshot.getValue(OrderEntity.class);
+            entity.setIdOrder(childSnapshot.getKey());
+            entity.setClientEmail(owner);
+            orders.add(entity);
         }
-        return products;
+        return orders;
     }
-    
 }

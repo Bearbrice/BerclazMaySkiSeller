@@ -58,7 +58,7 @@
     <string name="product_edit">Edit</string>
     <string name="product_delete">Delete</string>
     <string name="product_edit_save">Save changes</string>
-    <string name="delete_msg">Do you really want to delete this client?</string>
+    <string name="delete_msg">Do you really want to delete this product?</string>
     <string name="action_cancel">Cancel</string>
     <string name="product_place_order">Place order</string>
 

@@ -17,9 +17,9 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.repository.ProductRepository;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.database.repository.ProductRepository;
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductIdViewModel;
@@ -136,7 +136,7 @@ public class DetailsOrderFragment extends Fragment {
         /* Search in db for the product */
         ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProduct_id());
         productIdViewModel = ViewModelProviders.of(this, factory2).get(ProductIdViewModel.class);
-        productIdViewModel.getProduct().observe(this, productEntity -> {
+        productIdViewModel.getProducts().observe(this, productEntity -> {
             if (productEntity != null) {
                 product = productEntity;
                 updateTV(product.getProductName());
@@ -173,10 +173,10 @@ public class DetailsOrderFragment extends Fragment {
 
     private void updateContent() {
         if (order != null) {
-            etIdOrder.setText(Integer.toString(order.getIdOrder()));
+            etIdOrder.setText(order.getIdOrder());
             etOrderDate.setText(order.getOrderDate());
             etClientEmail.setText(order.getClientEmail());
-            etProductId.setText(Integer.toString(order.getProduct_id()));
+            etProductId.setText(order.getProduct_id());
         }
     }
 

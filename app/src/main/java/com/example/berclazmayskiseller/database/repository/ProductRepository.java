@@ -1,7 +1,5 @@
 package com.example.berclazmayskiseller.database.repository;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 
 import com.example.berclazmayskiseller.database.entity.ProductEntity;
@@ -9,7 +7,6 @@ import com.example.berclazmayskiseller.database.firebase.ProductListLiveData;
 import com.example.berclazmayskiseller.database.firebase.ProductLiveData;
 
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -58,12 +55,10 @@ public class ProductRepository {
 
     // Insert
     public void insert(final ProductEntity product, OnAsyncEventListener callback) {
-
+        String id = FirebaseDatabase.getInstance().getReference("products").push().getKey();
         FirebaseDatabase.getInstance()
                 .getReference("products")
-//                .child(account.getOwner())
-//                .child("accounts")
-//                .child(key)
+                .child(id)
                 .setValue(product, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -77,9 +72,7 @@ public class ProductRepository {
     public void update(final ProductEntity product, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("products")
-//                .child(account.getOwner())
-//                .child("accounts")
-//                .child(account.getId())
+                .child(product.getIdProduct())
                 .updateChildren(product.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -94,8 +87,6 @@ public class ProductRepository {
     public void delete(final ProductEntity product, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("products")
-//                .child(account.getOwner())
-//                .child("accounts")
                 .child(product.getIdProduct())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {

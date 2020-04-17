@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.OrderListViewModel;
 
@@ -75,8 +75,8 @@ public class DisplayOrdersFragment extends Fragment {
             }
         });
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
-        String user = sharedPref.getString("emailSaved", "NotFound");
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String user = sharedPref.getString("tokenSaved", "NotFound");
 
         /* Search in db for the orders */
         OrderListViewModel.Factory factory = new OrderListViewModel.Factory(getActivity().getApplication(), user);

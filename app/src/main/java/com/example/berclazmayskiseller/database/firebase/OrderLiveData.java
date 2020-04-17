@@ -1,9 +1,8 @@
 package com.example.berclazmayskiseller.database.firebase;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.annotation.NonNull;
+import android.util.Log;
 
 import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.google.firebase.database.DataSnapshot;
@@ -12,13 +11,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 public class OrderLiveData extends LiveData<OrderEntity> {
+
     private static final String TAG = "OrderLiveData";
 
     private final DatabaseReference reference;
+    private final String owner;
     private final OrderLiveData.MyValueEventListener listener = new OrderLiveData.MyValueEventListener();
 
     public OrderLiveData(DatabaseReference ref) {
-        this.reference = ref;
+        reference = ref;
+        owner = ref.getParent().getParent().getKey();
     }
 
     @Override
@@ -37,6 +39,7 @@ public class OrderLiveData extends LiveData<OrderEntity> {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             OrderEntity entity = dataSnapshot.getValue(OrderEntity.class);
             entity.setIdOrder(dataSnapshot.getKey());
+            entity.setClientEmail(owner);
             setValue(entity);
         }
 

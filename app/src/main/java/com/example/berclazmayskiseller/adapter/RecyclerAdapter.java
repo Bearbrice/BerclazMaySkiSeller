@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.example.berclazmayskiseller.database.entity.ProductEntity;
 import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 
@@ -57,7 +57,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         if (item.getClass().equals(ProductEntity.class))
             holder.mTextView.setText(((ProductEntity) item).getProductName());
         if (item.getClass().equals(OrderEntity.class))
-            holder.mTextView.setText("Order #"+((OrderEntity) item).getIdOrder() + " - Product ID : #" + ((OrderEntity) item).getProduct_id());
+            holder.mTextView.setText("Ordered on : "+((OrderEntity) item).getOrderDate() /*" - Product ID : #" + ((OrderEntity) item).getProduct_id()*/);
     }
 
     @Override
