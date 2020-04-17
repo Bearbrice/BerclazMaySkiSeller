@@ -36,16 +36,8 @@ import androidx.room.PrimaryKey;
         indices = {@Index(value = {"client_email"}),
                 @Index(value = {"product_id"})}
 )
-//@Entity(tableName = "Products",
-//        foreignKeys = [ForeignKey(entity = ImagesEntity::class,
-//        parentColumns = arrayOf("imageId"), childColumns = arrayOf("cityId")),
-//        ForeignKey(entity = PricesEntity::class,
-//        parentColumns = arrayOf("skuId"), childColumns = arrayOf("idProduct"))],
-//        indices = [Index(value = ["idProduct", "skuId"])])
 public class OrderEntity {
-    /**
-     * https://stackoverflow.com/questions/45988446/how-to-create-a-table-with-a-two-or-more-foreign-keys-using-android-room
-     */
+
     /* Primary key */
     @PrimaryKey(autoGenerate = true)
     private int idOrder;
