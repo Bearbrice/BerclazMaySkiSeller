@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller.db.repository;
+package com.example.berclazmayskiseller.database.repository;
 
 import android.content.Context;
 

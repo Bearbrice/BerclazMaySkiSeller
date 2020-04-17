@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.ProductListViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

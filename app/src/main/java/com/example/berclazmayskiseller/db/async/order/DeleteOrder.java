@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 public class DeleteOrder extends AsyncTask<OrderEntity, Void, Void> {
 

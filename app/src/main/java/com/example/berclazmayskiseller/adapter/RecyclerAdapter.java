@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 
 import java.util.List;
 import java.util.Objects;

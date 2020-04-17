@@ -1,45 +1,42 @@
 package com.example.berclazmayskiseller.viewmodel;
 
 import android.app.Application;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.example.berclazmayskiseller.BaseApp;
-import com.example.berclazmayskiseller.db.entity.ClientEntity;
-import com.example.berclazmayskiseller.db.repository.ClientRepository;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.database.entity.ClientEntity;
+import com.example.berclazmayskiseller.database.repository.ClientRepository;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 
 public class ClientViewModel extends AndroidViewModel {
 
+    private static final String TAG = "AccountViewModel";
+
     private ClientRepository repository;
 
-    private Application application;
-
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<ClientEntity> observableClient;
+    private final MediatorLiveData<ClientEntity> mObservableClient;
 
     public ClientViewModel(@NonNull Application application,
                            final String clientId, ClientRepository clientRepository) {
         super(application);
 
-        this.application = application;
-
         repository = clientRepository;
 
-        observableClient = new MediatorLiveData<>();
+        mObservableClient = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableClient.setValue(null);
+        mObservableClient.setValue(null);
 
-        LiveData<ClientEntity> client = repository.getClient(clientId, application);
+        LiveData<ClientEntity> account = repository.getClient(clientId);
 
         // observe the changes of the client entity from the database and forward them
-        observableClient.addSource(client, observableClient::setValue);
+        mObservableClient.addSource(account, mObservableClient::setValue);
     }
 
     /**
@@ -71,19 +68,16 @@ public class ClientViewModel extends AndroidViewModel {
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
     public LiveData<ClientEntity> getClient() {
-        return observableClient;
-    }
-
-    public void createClient(ClientEntity client, OnAsyncEventListener callback) {
-        repository.insert(client, callback, application);
+        return mObservableClient;
     }
 
     public void updateClient(ClientEntity client, OnAsyncEventListener callback) {
-        repository.update(client, callback, application);
+        ((BaseApp) getApplication()).getClientRepository()
+                .update(client, callback);
     }
 
     public void deleteClient(ClientEntity client, OnAsyncEventListener callback) {
-        repository.delete(client, callback, application);
-
+        ((BaseApp) getApplication()).getClientRepository()
+                .delete(client, callback);
     }
 }

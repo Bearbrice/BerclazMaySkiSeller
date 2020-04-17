@@ -10,15 +10,15 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.repository.ProductRepository;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.database.repository.ProductRepository;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 public class ProductViewModel extends AndroidViewModel {
 
     private ProductRepository repository;
 
-    private Context applicationContext;
+//    private Context applicationContext;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<ProductEntity> observableProduct;
@@ -29,13 +29,13 @@ public class ProductViewModel extends AndroidViewModel {
 
         repository = productRepository;
 
-        applicationContext = application.getApplicationContext();
+//        applicationContext = application.getApplicationContext();
 
         observableProduct = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableProduct.setValue(null);
 
-        LiveData<ProductEntity> product = repository.getProduct(productName, applicationContext);
+        LiveData<ProductEntity> product = repository.getProduct(productName);
 
         // observe the changes of the product entity from the database and forward them
         observableProduct.addSource(product, observableProduct::setValue);
@@ -74,18 +74,18 @@ public class ProductViewModel extends AndroidViewModel {
     }
 
     public void createProduct(ProductEntity product, OnAsyncEventListener callback) {
-        repository.insert(product, callback, applicationContext);
+        repository.insert(product, callback);
     }
 
     public void updateProduct(ProductEntity product, OnAsyncEventListener callback) {
-        repository.update(product, callback, applicationContext);
+        repository.update(product, callback);
     }
 
     public void deleteProduct(ProductEntity product, OnAsyncEventListener callback) {
-        repository.delete(product, callback, applicationContext);
+        repository.delete(product, callback);
     }
 
-    public void getProduct(int id, OnAsyncEventListener callback) {
-        repository.getProductById(id, applicationContext);
+    public void getProduct(String id, OnAsyncEventListener callback) {
+        repository.getProductById(id);
     }
 }

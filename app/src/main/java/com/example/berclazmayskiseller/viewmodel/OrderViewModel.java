@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.repository.OrderRepository;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 public class OrderViewModel extends AndroidViewModel {
 

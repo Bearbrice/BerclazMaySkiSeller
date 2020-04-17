@@ -11,7 +11,7 @@ import com.example.berclazmayskiseller.db.async.client.CreateClient;
 import com.example.berclazmayskiseller.db.async.client.DeleteClient;
 import com.example.berclazmayskiseller.db.async.client.UpdateClient;
 import com.example.berclazmayskiseller.db.entity.ClientEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 import java.util.List;
 

@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 
 import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.db.entity.ClientEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 
 public class UpdateClient extends AsyncTask<ClientEntity, Void, Void> {

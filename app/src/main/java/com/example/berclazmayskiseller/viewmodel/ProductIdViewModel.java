@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
 import com.example.berclazmayskiseller.db.repository.ProductRepository;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 public class ProductIdViewModel extends AndroidViewModel {
 

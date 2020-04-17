@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 
 import com.example.berclazmayskiseller.db.AppDatabase;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 public class CreateProduct extends AsyncTask<ProductEntity, Void, Void> {
 

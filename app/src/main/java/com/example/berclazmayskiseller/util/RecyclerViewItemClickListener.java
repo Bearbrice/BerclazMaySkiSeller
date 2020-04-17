@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller.db.util;
+package com.example.berclazmayskiseller.util;
 
 import android.view.View;
 

@@ -1,13 +1,11 @@
 package com.example.berclazmayskiseller.ui.orders;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.OrderListViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;

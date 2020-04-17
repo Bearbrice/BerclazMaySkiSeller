@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.db.entity.OrderEntity;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductViewModel;
 

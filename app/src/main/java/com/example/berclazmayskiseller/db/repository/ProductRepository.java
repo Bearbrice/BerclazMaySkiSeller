@@ -9,7 +9,7 @@ import com.example.berclazmayskiseller.db.async.product.CreateProduct;
 import com.example.berclazmayskiseller.db.async.product.DeleteProduct;
 import com.example.berclazmayskiseller.db.async.product.UpdateProduct;
 import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 import java.util.List;
 
