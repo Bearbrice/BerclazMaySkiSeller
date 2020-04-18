@@ -11,16 +11,16 @@ public class OrderEntity {
     private String idOrder;
     private String orderDate;
     private String clientEmail;
-    private String product_id;
+    private String productId;
 
     /* Constructors */
     public OrderEntity() {
     }
 
-    public OrderEntity(@NonNull String orderDate, String clientEmail, String product_id) {
+    public OrderEntity(@NonNull String orderDate, String clientEmail, String productId) {
         this.orderDate = orderDate;
         this.clientEmail = clientEmail;
-        this.product_id = product_id;
+        this.productId = productId;
     }
 
     /* Methods */
@@ -52,25 +52,25 @@ public class OrderEntity {
     }
 
 //    @Exclude
-    public String getProduct_id() {
-        return product_id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     @Override
     public String toString() {
-        return idOrder + ", " + orderDate + ", " + clientEmail + ", " + product_id;
+        return idOrder + ", " + orderDate + ", " + clientEmail + ", " + productId;
     }
 
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("orderDate", orderDate);
+        result.put("productId", productId);
         result.put("clientEmail", clientEmail);
-        result.put("product_id", product_id);
         return result;
     }
 }

@@ -291,10 +291,13 @@ public class DetailsProductFragment extends Fragment {
         SharedPreferences sharedPref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = sharedPref.getString("tokenSaved", "NotFound");
 
+//        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+//        String token = sharedPref.getString("emailSaved", "NotFound");
+
 
         order = new OrderEntity();
         order.setOrderDate(dateOrder);
-        order.setProduct_id(product.getIdProduct());
+        order.setProductId(product.getIdProduct());
         order.setClientEmail(token);
 
         OrderViewModel.Factory factory = new OrderViewModel.Factory(getActivity().getApplication(), token);

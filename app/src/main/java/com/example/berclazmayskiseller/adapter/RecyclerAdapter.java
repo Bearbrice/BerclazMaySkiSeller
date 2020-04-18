@@ -109,7 +109,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         return Objects.equals(newOrder.getIdOrder(), oldOrder.getIdOrder())
                                 && Objects.equals(newOrder.getOrderDate(), oldOrder.getOrderDate())
                                 && Objects.equals(newOrder.getClientEmail(), oldOrder.getClientEmail())
-                                && Objects.equals(newOrder.getProduct_id(), oldOrder.getProduct_id());
+                                && Objects.equals(newOrder.getProductId(), oldOrder.getProductId());
                     }
                     return false;
                 }

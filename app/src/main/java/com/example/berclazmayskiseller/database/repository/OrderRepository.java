@@ -69,11 +69,12 @@ public class OrderRepository {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("clients")
                 .child(order.getClientEmail())
-                
                 .child("orders");
         String key = reference.push().getKey();
         FirebaseDatabase.getInstance()
                 .getReference("clients")
+
+                // Search for the correct UID
                 .child(order.getClientEmail())
 
                 .child("orders")
@@ -85,6 +86,7 @@ public class OrderRepository {
                         callback.onSuccess();
                     }
                 });
+
     }
 
     public void update(final OrderEntity order, OnAsyncEventListener callback) {
@@ -107,7 +109,7 @@ public class OrderRepository {
                 .getReference("clients")
                 .child(order.getClientEmail())
                 .child("orders")
-                .child(order.getClientEmail())
+                .child(order.getIdOrder())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());

@@ -37,6 +37,16 @@ public class ClientRepository {
         return instance;
     }
 
+    //Get the email of a UID
+    public LiveData<ClientEntity> getById(final String id) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("clients")
+                .child(id)
+                .child("clients");
+        // return the email
+        return new ClientLiveData(reference);
+    }
+
     public void signIn(final String email, final String password,
                        final OnCompleteListener<AuthResult> listener) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

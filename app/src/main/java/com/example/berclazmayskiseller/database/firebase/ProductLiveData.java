@@ -36,7 +36,7 @@ public class ProductLiveData extends LiveData<ProductEntity> {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             ProductEntity entity = dataSnapshot.getValue(ProductEntity.class);
-            entity.setIdProduct(dataSnapshot.getKey());
+//            entity.setIdProduct(dataSnapshot.getKey());
             setValue(entity);
         }
 

@@ -66,11 +66,12 @@
     <string name="product_msg_error_delete">You cannot delete this product because it is contained in an order</string>
 
     <!-- Strings related to orders -->
-    <string name="order_id">Order #ID</string>
+    <string name="order_id">Order ref.</string>
     <string name="order_date">Order date</string>
-    <string name="order_idProduct">Product #ID</string>
+    <string name="order_idProduct">Product ref.</string>
     <string name="order_idClient">Email</string>
     <string name="order_delete">Delete order</string>
+    <string name="delete_msg_order">Do you really want to delete this order?</string>
     <string name="order_created">Order successfully created</string>
     <string name="order_product_info">Product information</string>
 

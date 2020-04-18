@@ -99,7 +99,7 @@ public class DetailsOrderFragment extends Fragment {
                 final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                 alertDialog.setTitle(getString(R.string.order_delete));
                 alertDialog.setCancelable(false);
-                alertDialog.setMessage(getString(R.string.delete_msg));
+                alertDialog.setMessage(getString(R.string.delete_msg_order));
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.order_delete), (dialog, which) -> {
                     viewModel.deleteOrder(order, new OnAsyncEventListener() {
                         @Override
@@ -134,7 +134,7 @@ public class DetailsOrderFragment extends Fragment {
         });
 
         /* Search in db for the product */
-        ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProduct_id());
+        ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProductId());
         productIdViewModel = ViewModelProviders.of(this, factory2).get(ProductIdViewModel.class);
         productIdViewModel.getProducts().observe(this, productEntity -> {
             if (productEntity != null) {
@@ -176,7 +176,7 @@ public class DetailsOrderFragment extends Fragment {
             etIdOrder.setText(order.getIdOrder());
             etOrderDate.setText(order.getOrderDate());
             etClientEmail.setText(order.getClientEmail());
-            etProductId.setText(order.getProduct_id());
+            etProductId.setText(order.getProductId());
         }
     }
 
