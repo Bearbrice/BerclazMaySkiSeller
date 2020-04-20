@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.ui.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
 
@@ -79,6 +80,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        //Log out from firebase authentication
+        FirebaseAuth.getInstance().signOut();
+
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }
