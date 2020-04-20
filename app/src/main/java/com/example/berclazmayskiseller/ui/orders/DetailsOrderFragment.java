@@ -20,7 +20,10 @@ import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.example.berclazmayskiseller.database.entity.ProductEntity;
 import com.example.berclazmayskiseller.database.repository.ProductRepository;
+import com.example.berclazmayskiseller.database.entity.ClientEntity;
+import com.example.berclazmayskiseller.database.repository.ClientRepository;
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.viewmodel.ClientViewModel;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductIdViewModel;
 
@@ -105,7 +108,6 @@ public class DetailsOrderFragment extends Fragment {
                         @Override
                         public void onSuccess() {
                             Log.d(TAG, "deleteClient: success");
-//                            getActivity().onBackPressed();
                             addFragment(new DisplayOrdersFragment(), getActivity(), R.id.container_orders, false, "one");
                         }
 
@@ -119,6 +121,7 @@ public class DetailsOrderFragment extends Fragment {
                 alertDialog.show();
             }
         });
+
 
         String idOrder = getActivity().getIntent().getStringExtra("idOrder");
 
@@ -179,6 +182,4 @@ public class DetailsOrderFragment extends Fragment {
             etProductId.setText(order.getProductId());
         }
     }
-
-
 }

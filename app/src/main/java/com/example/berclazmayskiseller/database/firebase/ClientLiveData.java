@@ -37,7 +37,7 @@ public class ClientLiveData extends LiveData<ClientEntity> {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             ClientEntity entity = dataSnapshot.getValue(ClientEntity.class);
-            entity.setId(dataSnapshot.getKey());
+//            entity.setId(dataSnapshot.getKey());
             setValue(entity);
         }
 

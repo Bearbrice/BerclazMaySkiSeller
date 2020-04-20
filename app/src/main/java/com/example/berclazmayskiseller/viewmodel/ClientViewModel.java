@@ -71,6 +71,8 @@ public class ClientViewModel extends AndroidViewModel {
         return mObservableClient;
     }
 
+
+
     public void updateClient(ClientEntity client, OnAsyncEventListener callback) {
         ((BaseApp) getApplication()).getClientRepository()
                 .update(client, callback);

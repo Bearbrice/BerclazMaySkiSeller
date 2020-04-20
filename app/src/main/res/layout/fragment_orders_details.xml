@@ -104,7 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/order_product_info"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@string/order_product_info_def_value" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

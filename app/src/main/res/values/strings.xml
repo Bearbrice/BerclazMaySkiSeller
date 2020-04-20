@@ -69,11 +69,12 @@
     <string name="order_id">Order ref.</string>
     <string name="order_date">Order date</string>
     <string name="order_idProduct">Product ref.</string>
-    <string name="order_idClient">Email</string>
+    <string name="order_idClient">User ID</string>
     <string name="order_delete">Delete order</string>
     <string name="delete_msg_order">Do you really want to delete this order?</string>
     <string name="order_created">Order successfully created</string>
     <string name="order_product_info">Product information</string>
+    <string name="order_product_info_def_value">Error : product information not available</string>
 
     <string name="order_message_empty">No order found</string>
 
