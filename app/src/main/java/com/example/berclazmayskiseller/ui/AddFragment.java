@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/** Class to create a fragment easily */
 public class AddFragment {
 
     public static void addFragment(Fragment fragment, FragmentActivity activity, int container_productsSearch, boolean addToBackStack, String tag) {
