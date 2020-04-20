@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPref = getActivity().getSharedPreferences("time", Context.MODE_PRIVATE);
         String timeConnexion = sharedPref.getString("timeSaved", "NotFound");
         time = view.findViewById(R.id.tvTime);
-        time.setText("Connected since : "+timeConnexion);
+        time.setText("Connected since : " + timeConnexion);
 
         //Get shared preferences for the email of the client connected
         sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
@@ -73,7 +72,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Button newBlockButton = (Button) getActivity().findViewById(
+        Button newBlockButton = getActivity().findViewById(
                 R.id.button_logout);
         newBlockButton.setOnClickListener(this);
     }

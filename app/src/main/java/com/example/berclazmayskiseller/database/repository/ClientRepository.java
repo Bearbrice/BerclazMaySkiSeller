@@ -4,12 +4,9 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-
 import com.example.berclazmayskiseller.database.entity.ClientEntity;
 import com.example.berclazmayskiseller.database.firebase.ClientLiveData;
-
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,16 +34,6 @@ public class ClientRepository {
         return instance;
     }
 
-    //Get the email of a UID
-    public LiveData<ClientEntity> getById(final String id) {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(id)
-                .child("clients");
-        // return the email
-        return new ClientLiveData(reference);
-    }
-
     public void signIn(final String email, final String password,
                        final OnCompleteListener<AuthResult> listener) {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
@@ -59,12 +46,6 @@ public class ClientRepository {
                 .child(clientId);
         return new ClientLiveData(reference);
     }
-
-//    public LiveData<List<ClientWithAccounts>> getOtherClientsWithAccounts(final String owner) {
-//        DatabaseReference reference = FirebaseDatabase.getInstance()
-//                .getReference("clients");
-//        return new ClientAccountsListLiveData(reference, owner);
-//    }
 
     public void register(final ClientEntity client, final OnAsyncEventListener callback) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(

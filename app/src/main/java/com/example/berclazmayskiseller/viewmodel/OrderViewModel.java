@@ -1,7 +1,6 @@
 package com.example.berclazmayskiseller.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -18,8 +17,6 @@ public class OrderViewModel extends AndroidViewModel {
 
     private OrderRepository repository;
 
-//    private Context applicationContext;
-
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<OrderEntity> observableOrder;
 
@@ -29,23 +26,14 @@ public class OrderViewModel extends AndroidViewModel {
 
         repository = orderRepository;
 
-//        applicationContext = application.getApplicationContext();
-
         observableOrder = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableOrder.setValue(null);
 
-//        if(email!=null) {
-//            LiveData<OrderEntity> order = repository.getByOwner(email);
-//
-//            // observe the changes of the order entity from the database and forward them
-//            observableOrder.addSource(order, observableOrder::setValue);
-//        }
-
         if (accountId != null) {
             LiveData<OrderEntity> order = repository.getByOwner(accountId);
-//
-//            // observe the changes of the order entity from the database and forward them
+
+            // observe the changes of the order entity from the database and forward them
             observableOrder.addSource(order, observableOrder::setValue);
         }
     }

@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData;
 import com.example.berclazmayskiseller.database.entity.ProductEntity;
 import com.example.berclazmayskiseller.database.firebase.ProductListLiveData;
 import com.example.berclazmayskiseller.database.firebase.ProductLiveData;
-
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -82,7 +81,6 @@ public class ProductRepository {
                 });
     }
 
-
     // Delete
     public void delete(final ProductEntity product, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
@@ -96,29 +94,4 @@ public class ProductRepository {
                     }
                 });
     }
-
-
-//    public LiveData<ProductEntity> getProduct(final String name, Context context) {
-//        return AppDatabase.getInstance(context).productDao().getByName(name);
-//    }
-//
-//    public LiveData<ProductEntity> getProductById(final int id, Context context) {
-//        return AppDatabase.getInstance(context).productDao().getById(id);
-//    }
-//
-//    public LiveData<List<ProductEntity>> getAllProducts(Context context) {
-//        return AppDatabase.getInstance(context).productDao().getAll();
-//    }
-//
-//    public void insert(final ProductEntity product, OnAsyncEventListener callback, Context context) {
-//        new CreateProduct(context, callback).execute(product);
-//    }
-//
-//    public void update(final ProductEntity product, OnAsyncEventListener callback, Context context) {
-//        new UpdateProduct(context, callback).execute(product);
-//    }
-//
-//    public void delete(final ProductEntity product, OnAsyncEventListener callback, Context context) {
-//        new DeleteProduct(context, callback).execute(product);
-//    }
 }

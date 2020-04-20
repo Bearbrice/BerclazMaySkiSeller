@@ -26,8 +26,6 @@ public class ProductIdViewModel extends AndroidViewModel {
 
         repository = productRepository;
 
-//        applicationContext = application.getApplicationContext();
-
         observableProduct = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableProduct.setValue(null);

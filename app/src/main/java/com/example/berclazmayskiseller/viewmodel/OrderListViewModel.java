@@ -1,9 +1,6 @@
 package com.example.berclazmayskiseller.viewmodel;
 
 import android.app.Application;
-import android.content.Context;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -16,6 +13,8 @@ import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.example.berclazmayskiseller.database.repository.OrderRepository;
 
+import java.util.List;
+
 /**
  * Class to display the list of orders
  */
@@ -25,8 +24,6 @@ public class OrderListViewModel extends AndroidViewModel {
 
     private OrderRepository repository;
 
-//    private Context applicationContext;
-
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<OrderEntity>> observableOrders;
 
@@ -34,8 +31,6 @@ public class OrderListViewModel extends AndroidViewModel {
         super(application);
 
         repository = orderRepository;
-
-//        applicationContext = application.getApplicationContext();
 
         observableOrders = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
@@ -61,7 +56,6 @@ public class OrderListViewModel extends AndroidViewModel {
 
         public Factory(@NonNull Application application, String ownerId) {
             this.application = application;
-//            orderRepository = OrderRepository.getInstance();
             orderRepository = ((BaseApp) application).getOrderRepository();
             this.ownerId = ownerId;
         }

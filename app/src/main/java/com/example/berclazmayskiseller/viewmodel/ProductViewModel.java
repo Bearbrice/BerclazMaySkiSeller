@@ -17,8 +17,6 @@ public class ProductViewModel extends AndroidViewModel {
 
     private ProductRepository repository;
 
-//    private Context applicationContext;
-
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<ProductEntity> observableProduct;
 
@@ -27,8 +25,6 @@ public class ProductViewModel extends AndroidViewModel {
         super(application);
 
         repository = productRepository;
-
-//        applicationContext = application.getApplicationContext();
 
         observableProduct = new MediatorLiveData<>();
         // set by default null, until we get data from the database.

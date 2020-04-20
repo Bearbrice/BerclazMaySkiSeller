@@ -1,10 +1,5 @@
 package com.example.berclazmayskiseller.ui.orders;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,14 +11,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.example.berclazmayskiseller.database.entity.ProductEntity;
 import com.example.berclazmayskiseller.database.repository.ProductRepository;
-import com.example.berclazmayskiseller.database.entity.ClientEntity;
-import com.example.berclazmayskiseller.database.repository.ClientRepository;
 import com.example.berclazmayskiseller.util.OnAsyncEventListener;
-import com.example.berclazmayskiseller.viewmodel.ClientViewModel;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductIdViewModel;
 

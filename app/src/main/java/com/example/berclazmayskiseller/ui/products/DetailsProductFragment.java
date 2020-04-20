@@ -1,10 +1,5 @@
 package com.example.berclazmayskiseller.ui.products;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.database.entity.OrderEntity;
@@ -290,10 +290,6 @@ public class DetailsProductFragment extends Fragment {
 
         SharedPreferences sharedPref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
         String token = sharedPref.getString("tokenSaved", "NotFound");
-
-//        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
-//        String token = sharedPref.getString("emailSaved", "NotFound");
-
 
         order = new OrderEntity();
         order.setOrderDate(dateOrder);

@@ -1,12 +1,13 @@
 package com.example.berclazmayskiseller.viewmodel;
 
 import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
 
 import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.database.entity.ClientEntity;

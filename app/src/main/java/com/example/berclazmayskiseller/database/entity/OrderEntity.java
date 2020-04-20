@@ -51,7 +51,6 @@ public class OrderEntity {
         this.clientEmail = clientEmail;
     }
 
-//    @Exclude
     public String getProductId() {
         return productId;
     }

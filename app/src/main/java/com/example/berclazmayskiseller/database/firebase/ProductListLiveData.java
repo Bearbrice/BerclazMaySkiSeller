@@ -1,8 +1,9 @@
 package com.example.berclazmayskiseller.database.firebase;
 
-import androidx.lifecycle.LiveData;
-import androidx.annotation.NonNull;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
 import com.example.berclazmayskiseller.database.entity.ProductEntity;
 import com.google.firebase.database.DataSnapshot;
@@ -18,14 +19,10 @@ public class ProductListLiveData extends LiveData<List<ProductEntity>> {
     private static final String TAG = "ProductListLiveData";
 
     private final DatabaseReference reference;
-//    private final String owner;
-//    private final String productName;
     private final MyValueEventListener listener = new MyValueEventListener();
 
     public ProductListLiveData(DatabaseReference ref) {
         reference = ref;
-//        this.owner = owner;
-//        this.productName = productName;
     }
 
     @Override
@@ -60,5 +57,5 @@ public class ProductListLiveData extends LiveData<List<ProductEntity>> {
         }
         return products;
     }
-    
+
 }

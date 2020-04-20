@@ -1,10 +1,7 @@
 package com.example.berclazmayskiseller.database.repository;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 
-import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.database.entity.OrderEntity;
 import com.example.berclazmayskiseller.database.firebase.OrderListLiveData;
 import com.example.berclazmayskiseller.database.firebase.OrderLiveData;
@@ -50,12 +47,6 @@ public class OrderRepository {
                 .child("orders");
         return new OrderLiveData(reference);
     }
-
-//    public LiveData<List<OrderEntity>> getAllOrders() {
-//        DatabaseReference reference = FirebaseDatabase.getInstance()
-//                .getReference("products");
-//        return new OrderListLiveData(reference);
-//    }
 
     public LiveData<List<OrderEntity>> getByOwners(final String owner) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
@@ -118,35 +109,4 @@ public class OrderRepository {
                     }
                 });
     }
-
-//    public LiveData<OrderEntity> getOrder(final int orderId, Context application) {
-//        return ((BaseApp) application).getDatabase().orderDao().getById(orderId);
-//    }
-//
-//    public LiveData<OrderEntity> getByOwner(final String email, Context application) {
-//        return ((BaseApp) application).getDatabase().orderDao().getByEmail(email);
-//    }
-//
-//    public LiveData<List<OrderEntity>> getAllOrders(Context context) {
-//        return AppDatabase.getInstance(context).orderDao().getAll();
-//    }
-//
-//    public LiveData<List<OrderEntity>> getByOwners(final String owner, Context application) {
-//        return ((BaseApp) application).getDatabase().orderDao().getOwned(owner);
-//    }
-//
-//    public void insert(final OrderEntity order, OnAsyncEventListener callback,
-//                       Context application) {
-//        new CreateOrder(application, callback).execute(order);
-//    }
-//
-//    public void update(final OrderEntity order, OnAsyncEventListener callback,
-//                       Context application) {
-//        new UpdateOrder(application, callback).execute(order);
-//    }
-//
-//    public void delete(final OrderEntity order, OnAsyncEventListener callback,
-//                       Context application) {
-//        new DeleteOrder(application, callback).execute(order);
-//    }
 }
