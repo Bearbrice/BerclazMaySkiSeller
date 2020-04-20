@@ -12,8 +12,8 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.repository.ProductRepository;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.database.repository.ProductRepository;
 
 /**
  * Class to display the list of products
@@ -22,7 +22,7 @@ public class ProductListViewModel extends AndroidViewModel {
 
     private ProductRepository repository;
 
-    private Context applicationContext;
+//    private Context applicationContext;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<List<ProductEntity>> observableProducts;
@@ -32,13 +32,13 @@ public class ProductListViewModel extends AndroidViewModel {
 
         repository = productRepository;
 
-        applicationContext = application.getApplicationContext();
+//        applicationContext = application.getApplicationContext();
 
         observableProducts = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableProducts.setValue(null);
 
-        LiveData<List<ProductEntity>> products = repository.getAllProducts(applicationContext);
+        LiveData<List<ProductEntity>> products = repository.getAllProducts();
 
         // observe the changes of the entities from the database and forward them
         observableProducts.addSource(products, observableProducts::setValue);

@@ -10,35 +10,44 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.repository.OrderRepository;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.repository.OrderRepository;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 
 public class OrderViewModel extends AndroidViewModel {
 
     private OrderRepository repository;
 
-    private Context applicationContext;
+//    private Context applicationContext;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
     private final MediatorLiveData<OrderEntity> observableOrder;
 
     public OrderViewModel(@NonNull Application application,
-                          final String email, OrderRepository orderRepository) {
+                          final String accountId, OrderRepository orderRepository) {
         super(application);
 
         repository = orderRepository;
 
-        applicationContext = application.getApplicationContext();
+//        applicationContext = application.getApplicationContext();
 
         observableOrder = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableOrder.setValue(null);
 
-        LiveData<OrderEntity> order = repository.getByOwner(email, applicationContext);
+//        if(email!=null) {
+//            LiveData<OrderEntity> order = repository.getByOwner(email);
+//
+//            // observe the changes of the order entity from the database and forward them
+//            observableOrder.addSource(order, observableOrder::setValue);
+//        }
 
-        // observe the changes of the order entity from the database and forward them
-        observableOrder.addSource(order, observableOrder::setValue);
+        if (accountId != null) {
+            LiveData<OrderEntity> order = repository.getByOwner(accountId);
+//
+//            // observe the changes of the order entity from the database and forward them
+            observableOrder.addSource(order, observableOrder::setValue);
+        }
     }
 
     /**
@@ -49,20 +58,20 @@ public class OrderViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String email;
+        private final String accountId;
 
         private final OrderRepository repository;
 
-        public Factory(@NonNull Application application, String orderEmail) {
+        public Factory(@NonNull Application application, String accountId) {
             this.application = application;
-            this.email = orderEmail;
+            this.accountId = accountId;
             repository = OrderRepository.getInstance();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new OrderViewModel(application, email, repository);
+            return (T) new OrderViewModel(application, accountId, repository);
         }
     }
 
@@ -74,14 +83,14 @@ public class OrderViewModel extends AndroidViewModel {
     }
 
     public void createOrder(OrderEntity order, OnAsyncEventListener callback) {
-        repository.insert(order, callback, applicationContext);
+        repository.insert(order, callback);
     }
 
     public void updateOrder(OrderEntity order, OnAsyncEventListener callback) {
-        repository.update(order, callback, applicationContext);
+        repository.update(order, callback);
     }
 
     public void deleteOrder(OrderEntity order, OnAsyncEventListener callback) {
-        repository.delete(order, callback, applicationContext);
+        repository.delete(order, callback);
     }
 }

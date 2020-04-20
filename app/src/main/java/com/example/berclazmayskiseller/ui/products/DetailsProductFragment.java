@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,9 +19,9 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductViewModel;
 
@@ -58,7 +57,6 @@ public class DetailsProductFragment extends Fragment {
     private Button button_add;
     private Button button_edit;
     private Button button_delete;
-    //private Button button_edit_save;
     private Button button_place_order;
 
     private List<ProductEntity> products = new ArrayList<>();
@@ -71,7 +69,6 @@ public class DetailsProductFragment extends Fragment {
     /* Constructor */
     public DetailsProductFragment(ProductEntity productEntity) {
         product = productEntity;
-
     }
 
     @Override
@@ -291,15 +288,19 @@ public class DetailsProductFragment extends Fragment {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String dateOrder = formatter.format(date);
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
-        String email = sharedPref.getString("emailSaved", "NotFound");
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String token = sharedPref.getString("tokenSaved", "NotFound");
+
+//        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
+//        String token = sharedPref.getString("emailSaved", "NotFound");
+
 
         order = new OrderEntity();
         order.setOrderDate(dateOrder);
-        order.setProduct_id(product.getIdProduct());
-        order.setClientEmail(email);
+        order.setProductId(product.getIdProduct());
+        order.setClientEmail(token);
 
-        OrderViewModel.Factory factory = new OrderViewModel.Factory(getActivity().getApplication(), email);
+        OrderViewModel.Factory factory = new OrderViewModel.Factory(getActivity().getApplication(), token);
         orderViewModel = ViewModelProviders.of(this, factory).get(OrderViewModel.class);
 
         orderViewModel.createOrder(order, new OnAsyncEventListener() {

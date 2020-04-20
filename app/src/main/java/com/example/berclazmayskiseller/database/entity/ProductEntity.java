@@ -1,30 +1,21 @@
-package com.example.berclazmayskiseller.db.entity;
+package com.example.berclazmayskiseller.database.entity;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "products")
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class ProductEntity {
 
-    /* Primary key */
-    @PrimaryKey(autoGenerate = true)
-    private int idProduct;
-
-    /* Columns */
-    @ColumnInfo(name = "product_name")
+    private String idProduct;
     private String productName;
-
-    @ColumnInfo(name = "price")
     private double price;
-
-    @ColumnInfo(name = "color")
     private String color;
 
     /* Constructors */
-    @Ignore
     public ProductEntity() {
     }
 
@@ -36,11 +27,12 @@ public class ProductEntity {
 
     /* Methods */
     /* Getters + Setters */
-    public int getIdProduct() {
+    @Exclude
+    public String getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(int idProduct) {
+    public void setIdProduct(String idProduct) {
         this.idProduct = idProduct;
     }
 
@@ -81,5 +73,15 @@ public class ProductEntity {
     @Override
     public String toString() {
         return productName + ", " + price + ", " + color;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("productName", productName);
+        result.put("price", price);
+        result.put("color", color);
+
+        return result;
     }
 }

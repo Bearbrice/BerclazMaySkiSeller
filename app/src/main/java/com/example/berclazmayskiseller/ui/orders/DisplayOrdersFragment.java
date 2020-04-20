@@ -1,13 +1,11 @@
 package com.example.berclazmayskiseller.ui.orders;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.berclazmayskiseller.R;
 import com.example.berclazmayskiseller.adapter.RecyclerAdapter;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 import com.example.berclazmayskiseller.viewmodel.OrderListViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +75,8 @@ public class DisplayOrdersFragment extends Fragment {
             }
         });
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("email", Context.MODE_PRIVATE);
-        String user = sharedPref.getString("emailSaved", "NotFound");
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("token", Context.MODE_PRIVATE);
+        String user = sharedPref.getString("tokenSaved", "NotFound");
 
         /* Search in db for the orders */
         OrderListViewModel.Factory factory = new OrderListViewModel.Factory(getActivity().getApplication(), user);

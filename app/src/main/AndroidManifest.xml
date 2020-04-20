@@ -56,7 +56,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.berclazmayskiseller.ui.login.LoginActivity" />
         </activity>
-
     </application>
 
 </manifest>

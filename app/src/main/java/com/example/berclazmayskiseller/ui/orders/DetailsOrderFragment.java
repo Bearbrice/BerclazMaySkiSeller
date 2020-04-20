@@ -17,10 +17,13 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.repository.ProductRepository;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.database.repository.ProductRepository;
+import com.example.berclazmayskiseller.database.entity.ClientEntity;
+import com.example.berclazmayskiseller.database.repository.ClientRepository;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.viewmodel.ClientViewModel;
 import com.example.berclazmayskiseller.viewmodel.OrderViewModel;
 import com.example.berclazmayskiseller.viewmodel.ProductIdViewModel;
 
@@ -99,13 +102,12 @@ public class DetailsOrderFragment extends Fragment {
                 final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                 alertDialog.setTitle(getString(R.string.order_delete));
                 alertDialog.setCancelable(false);
-                alertDialog.setMessage(getString(R.string.delete_msg));
+                alertDialog.setMessage(getString(R.string.delete_msg_order));
                 alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.order_delete), (dialog, which) -> {
                     viewModel.deleteOrder(order, new OnAsyncEventListener() {
                         @Override
                         public void onSuccess() {
                             Log.d(TAG, "deleteClient: success");
-//                            getActivity().onBackPressed();
                             addFragment(new DisplayOrdersFragment(), getActivity(), R.id.container_orders, false, "one");
                         }
 
@@ -119,6 +121,7 @@ public class DetailsOrderFragment extends Fragment {
                 alertDialog.show();
             }
         });
+
 
         String idOrder = getActivity().getIntent().getStringExtra("idOrder");
 
@@ -134,9 +137,9 @@ public class DetailsOrderFragment extends Fragment {
         });
 
         /* Search in db for the product */
-        ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProduct_id());
+        ProductIdViewModel.Factory factory2 = new ProductIdViewModel.Factory(getActivity().getApplication(), order.getProductId());
         productIdViewModel = ViewModelProviders.of(this, factory2).get(ProductIdViewModel.class);
-        productIdViewModel.getProduct().observe(this, productEntity -> {
+        productIdViewModel.getProducts().observe(this, productEntity -> {
             if (productEntity != null) {
                 product = productEntity;
                 updateTV(product.getProductName());
@@ -173,12 +176,10 @@ public class DetailsOrderFragment extends Fragment {
 
     private void updateContent() {
         if (order != null) {
-            etIdOrder.setText(Integer.toString(order.getIdOrder()));
+            etIdOrder.setText(order.getIdOrder());
             etOrderDate.setText(order.getOrderDate());
             etClientEmail.setText(order.getClientEmail());
-            etProductId.setText(Integer.toString(order.getProduct_id()));
+            etProductId.setText(order.getProductId());
         }
     }
-
-
 }

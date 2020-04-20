@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.entity.OrderEntity;
-import com.example.berclazmayskiseller.db.entity.ProductEntity;
-import com.example.berclazmayskiseller.db.util.RecyclerViewItemClickListener;
+import com.example.berclazmayskiseller.database.entity.OrderEntity;
+import com.example.berclazmayskiseller.database.entity.ProductEntity;
+import com.example.berclazmayskiseller.util.RecyclerViewItemClickListener;
 
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +57,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         if (item.getClass().equals(ProductEntity.class))
             holder.mTextView.setText(((ProductEntity) item).getProductName());
         if (item.getClass().equals(OrderEntity.class))
-            holder.mTextView.setText("Order #"+((OrderEntity) item).getIdOrder() + " - Product ID : #" + ((OrderEntity) item).getProduct_id());
+            holder.mTextView.setText("Ordered on : "+((OrderEntity) item).getOrderDate() /*" - Product ID : #" + ((OrderEntity) item).getProduct_id()*/);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         return Objects.equals(newOrder.getIdOrder(), oldOrder.getIdOrder())
                                 && Objects.equals(newOrder.getOrderDate(), oldOrder.getOrderDate())
                                 && Objects.equals(newOrder.getClientEmail(), oldOrder.getClientEmail())
-                                && Objects.equals(newOrder.getProduct_id(), oldOrder.getProduct_id());
+                                && Objects.equals(newOrder.getProductId(), oldOrder.getProductId());
                     }
                     return false;
                 }

@@ -2,6 +2,9 @@ package com.example.berclazmayskiseller.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,19 +12,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
-import com.example.berclazmayskiseller.ui.MainActivity;
+import com.example.berclazmayskiseller.BaseApp;
 import com.example.berclazmayskiseller.R;
-import com.example.berclazmayskiseller.db.async.client.CreateClient;
-import com.example.berclazmayskiseller.db.entity.ClientEntity;
-import com.example.berclazmayskiseller.db.util.OnAsyncEventListener;
+import com.example.berclazmayskiseller.database.entity.ClientEntity;
+import com.example.berclazmayskiseller.database.repository.ClientRepository;
+import com.example.berclazmayskiseller.ui.MainActivity;
+import com.example.berclazmayskiseller.util.OnAsyncEventListener;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
+
+    private ClientRepository repository;
 
     private Toast toast;
 
@@ -35,7 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        repository = ((BaseApp) getApplication()).getClientRepository();
+
         initializeForm();
+
         toast = Toast.makeText(this, getString(R.string.client_created), Toast.LENGTH_LONG);
 
         //Get and set night mode
@@ -46,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
     }
 
     private void initializeForm() {
@@ -79,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         ClientEntity newClient = new ClientEntity(email, firstName, lastName, pwd);
 
-        new CreateClient(getApplication(), new OnAsyncEventListener() {
+        repository.register(newClient, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "createUserWithEmail: success");
@@ -89,6 +97,12 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("emailSaved", email);
                 editor.commit();
+
+                /* Store the token connected */
+                sharedPref = getSharedPreferences("token", Context.MODE_PRIVATE);
+                editor = sharedPref.edit();
+                editor.putString("tokenSaved", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                editor.commit();
             }
 
             @Override
@@ -96,7 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d(TAG, "createUserWithEmail: failure", e);
                 setResponse(false);
             }
-        }).execute(newClient);
+        });
     }
 
     private void setResponse(Boolean response) {

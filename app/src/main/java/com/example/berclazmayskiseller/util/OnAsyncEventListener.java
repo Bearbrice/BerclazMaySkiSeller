@@ -1,4 +1,4 @@
-package com.example.berclazmayskiseller.db.util;
+package com.example.berclazmayskiseller.util;
 
 /**
  * This generic interface is used as custom callback for async tasks.

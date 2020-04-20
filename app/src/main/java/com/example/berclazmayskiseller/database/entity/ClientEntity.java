@@ -1,33 +1,19 @@
-package com.example.berclazmayskiseller.db.entity;
+package com.example.berclazmayskiseller.database.entity;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.annotation.NonNull;
 
-/**
- * https://developer.android.com/reference/android/arch/persistence/room/Entity.html
- * <p>
- * Further information to Parcelable:
- * https://developer.android.com/reference/android/os/Parcelable
- * Why we use Parcelable over Serializable:
- * https://android.jlelse.eu/parcelable-vs-serializable-6a2556d51538
- */
-@Entity(tableName = "clients", primaryKeys = {"email"})
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ClientEntity implements Comparable {
-
-    @NonNull
+    private String id;
     private String email;
-
-    @ColumnInfo(name = "first_name")
     private String firstName;
-
-    @ColumnInfo(name = "last_name")
     private String lastName;
-
     private String password;
 
-    @Ignore
     public ClientEntity() {
     }
 
@@ -38,7 +24,15 @@ public class ClientEntity implements Comparable {
         this.password = password;
     }
 
-    @NonNull
+    @Exclude
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -63,6 +57,7 @@ public class ClientEntity implements Comparable {
         this.lastName = lastName;
     }
 
+    @Exclude
     public String getPassword() {
         return password;
     }
@@ -86,7 +81,17 @@ public class ClientEntity implements Comparable {
     }
 
     @Override
-    public int compareTo(@NonNull Object o) {
+    public int compareTo(Object o) {
         return toString().compareTo(o.toString());
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("firstName", firstName);
+        result.put("lastName", lastName);
+        result.put("email", email);
+
+        return result;
     }
 }

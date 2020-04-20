@@ -20,13 +20,13 @@ import static com.example.berclazmayskiseller.ui.AddFragment.addFragment;
 
 public class ProductsFragment extends Fragment {
 
-    public View onCreateView(@NonNull final LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull final LayoutInflater inflater,
+                           ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_products, container, false);
-        addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
+    View view = inflater.inflate(R.layout.fragment_products, container, false);
+    addFragment(new DisplayProductsFragment(), getActivity(), R.id.container_products, false, "one");
 
-        return view;
-    }
+    return view;
+  }
 
 }
