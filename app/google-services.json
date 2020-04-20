@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "600577897104",
+    "firebase_url": "https://berclazmayskiseller.firebaseio.com",
+    "project_id": "berclazmayskiseller",
+    "storage_bucket": "berclazmayskiseller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600577897104:android:44a3f05776898d1c645e15",
+        "android_client_info": {
+          "package_name": "com.example.berclazmayskiseller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600577897104-3h30alahg5uj6a7j00h4l7rr9dooak3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCACPL8AUmPPfFa0tXq5q0joKsI0v0oZWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600577897104-3h30alahg5uj6a7j00h4l7rr9dooak3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
